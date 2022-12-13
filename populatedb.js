@@ -139,20 +139,41 @@ function createCarManufacturerBodyBrand(cb) {
         manufacturerCreate(
           "Honda Motor Company",
           "Honda Motor Co., Ltd. is a Japanese public multinational conglomerate manufacturer of automobiles, motorcycles, and power equipment, headquartered in Minato, Tokyo, Japan",
-          "Tokyo, Japan"
+          "Tokyo, Japan",
+          callback
         );
       },
       function (callback) {
-        authorCreate("Ben", "Bova", "1932-11-8", false, callback);
+        manufacturerCreate(
+          "Stellantis",
+          "Stellantis N.V. is a multinational automotive manufacturing corporation formed in 2021 on the basis of a 50–50 cross-border merger between the Italian-American conglomerate Fiat Chrysler Automobiles and the French PSA Group. The company is headquartered in Amsterdam",
+          "Amsterdam, The Netherlands",
+          callback
+        );
       },
       function (callback) {
-        authorCreate("Isaac", "Asimov", "1920-01-02", "1992-04-06", callback);
+        manufacturerCreate(
+          "Volkswagen Group",
+          "Volkswagen AG, known internationally as the Volkswagen Group, is a German multinational automotive manufacturer headquartered in Wolfsburg, Lower Saxony, Germany",
+          "Wolfsburg, Germany",
+          callback
+        );
       },
       function (callback) {
-        authorCreate("Bob", "Billings", false, false, callback);
+        manufacturerCreate(
+          "Toyota Motor Coorporation",
+          "Toyota Motor Corporation is a Japanese multinational automotive manufacturer headquartered in Toyota City, Aichi, Japan. It was founded by Kiichiro Toyoda and incorporated on August 28, 1937. Toyota is one of the largest automobile manufacturers in the world, producing about 10 million vehicles per year.",
+          "Aichi, Japan",
+          callback
+        );
       },
       function (callback) {
-        authorCreate("Jim", "Jones", "1971-12-16", false, callback);
+        manufacturerCreate(
+          "General Motors",
+          "The General Motors Company is an American multinational automotive manufacturing company headquartered in Detroit, Michigan, United States. It is the largest automaker in the United States and was the largest in the world for 77 years before losing the top spot to Toyota in 2008",
+          "Flint, Michigan, USA",
+          callback
+        );
       },
       function (callback) {
         genreCreate("Fantasy", callback);
