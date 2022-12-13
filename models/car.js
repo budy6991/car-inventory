@@ -7,8 +7,14 @@ const CarSchema = new Schema({
   year: { type: Number, min: 1900, max: 2100, required: true },
   description: { type: String, required: true },
   manufacturer: { type: Schema.Types.ObjectId, ref: "Manufacturer" },
-  carBody: { type: Schema.Types.ObjectId, ref: "CarBody" },
+  car_body: { type: Schema.Types.ObjectId, ref: "CarBody" },
   brand: { type: Schema.Types.ObjectId, ref: "Brand" },
+});
+
+// Virtual for Car's full model name
+
+CarSchema.virtual("fullModelName").get(function () {
+  let fullModelName = `${this.name} ${this.model}, ${this.year}, (${this.car_body})`;
 });
 
 // Virtual for Car's URL
