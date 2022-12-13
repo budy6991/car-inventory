@@ -132,11 +132,15 @@ function manufacturerCreate(name, description, headquarters, cb) {
   });
 }
 
-function createGenreAuthors(cb) {
+function createCarManufacturerBodyBrand(cb) {
   async.series(
     [
       function (callback) {
-        authorCreate("Patrick", "Rothfuss", "1973-06-06", false, callback);
+        manufacturerCreate(
+          "Honda Motor Company",
+          "Honda Motor Co., Ltd. is a Japanese public multinational conglomerate manufacturer of automobiles, motorcycles, and power equipment, headquartered in Minato, Tokyo, Japan",
+          "Tokyo, Japan"
+        );
       },
       function (callback) {
         authorCreate("Ben", "Bova", "1932-11-8", false, callback);
