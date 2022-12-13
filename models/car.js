@@ -10,3 +10,11 @@ const CarSchema = new Schema({
   carBody: { type: Schema.Types.ObjectId, ref: "CarBody" },
   brand: { type: Schema.Types.ObjectId, ref: "Brand" },
 });
+
+// Virtual for Car's URL
+
+CarSchema.virtual("url").get(function () {
+  return `/catalog/car/${this._id}`;
+});
+
+module.exports = mongoose.model("Car", CarSchema);
