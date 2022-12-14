@@ -37,6 +37,7 @@ function carCreate(
   model,
   year,
   description,
+  price,
   manufacturer,
   car_body,
   brand,
@@ -86,7 +87,7 @@ function carBodyCreate(name, description, cb) {
       cb(err, null);
       return;
     }
-    console.log("New CarBody: " + carbBody);
+    console.log("New CarBody: " + carBody);
     carBodies.push(carBody);
     cb(null, carBody);
   });
@@ -588,7 +589,7 @@ async.series(
     if (err) {
       console.log("FINAL ERR: " + err);
     } else {
-      console.log("BOOKInstances: " + bookinstances);
+      console.log("CARInstances: " + carInstances);
     }
     // All done, disconnect from database
     mongoose.connection.close();

@@ -7,7 +7,7 @@ const BrandSchema = new Schema({
   description: { type: String, required: true },
 });
 
-BranchSchema.virtual("url").get(function () {
+BrandSchema.virtual("url").get(function () {
   return `/catalog/brand/${this._id}`;
 });
 
