@@ -6,6 +6,7 @@ const CarSchema = new Schema({
   model: { type: String, required: true, maxLenght: 120 },
   year: { type: Number, min: 1900, max: 2100, required: true },
   description: { type: String, required: true },
+  price: { type: Number, required: true },
   manufacturer: { type: Schema.Types.ObjectId, ref: "Manufacturer" },
   car_body: { type: Schema.Types.ObjectId, ref: "CarBody" },
   brand: { type: Schema.Types.ObjectId, ref: "Brand" },
