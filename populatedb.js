@@ -291,6 +291,62 @@ function createCarManufacturerBodyBrand(cb) {
           callback
         );
       },
+      function (callback) {
+        brandCreate(
+          "BMW",
+          "Bayerische Motoren Werke AG, abbreviated as BMW, is a German multinational manufacturer of performance luxury vehicles and motorcycles headquartered in Munich, Bavaria, Germany.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Ford",
+          "One of the main brands of vehicles worlwide which belongs to Ford Motor Company. Alternatively, it has an upper division of cars under the name of Ford Performance, utilized for racing and competition. ",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Acura",
+          "Acura is the luxury and performance division of Japanese automaker Honda, based primarily in North America. The brand was launched in the United States and Canada on March 27, 1986, marketing luxury and performance automobiles. ",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Honda",
+          "One of the main brands of Honda Motor Company, specialized on automobiles, motorcycles and power equipment",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Kia",
+          "Kia Corporation is a South Korean multinational automobile manufacturer headquartered in Seoul, South Korea. It is South Korea's second largest automobile manufacturer, after its parent company, Hyundai Motor Company, with sales of over 2.8 million vehicles in 2019.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Kia",
+          "Kia Corporation is a South Korean multinational automobile manufacturer headquartered in Seoul, South Korea. It is South Korea's second largest automobile manufacturer, after its parent company, Hyundai Motor Company, with sales of over 2.8 million vehicles in 2019.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Hyundai",
+          "Hyundai Automobiles is one of the main brands of Hyundai Motor Company.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Lexus",
+          "Lexus is the luxury vehicle division of the Japanese automaker Toyota. The Lexus brand is marketed in more than 90 countries and territories worldwide and is Japan's largest-selling make of premium cars. It has ranked among the 10 largest Japanese global brands in market value.",
+          callback
+        );
+      },
     ],
     // optional callback
     cb
