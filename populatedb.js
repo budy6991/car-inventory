@@ -496,90 +496,84 @@ function createCarInstances(cb) {
     [
       function (callback) {
         carInstanceCreate(
-          books[0],
-          "London Gollancz, 2014.",
-          false,
+          cars[0],
+          "All Wheel Drive, NY",
           "Available",
-          callback
-        );
-      },
-      function (callback) {
-        bookInstanceCreate(
-          books[1],
-          " Gollancz, 2011.",
-          false,
-          "Loaned",
-          callback
-        );
-      },
-      function (callback) {
-        bookInstanceCreate(
-          books[2],
-          " Gollancz, 2015.",
-          false,
           false,
           callback
         );
       },
       function (callback) {
-        bookInstanceCreate(
-          books[3],
-          "New York Tom Doherty Associates, 2016.",
+        carInstanceCreate(
+          cars[0],
+          "Autopia Auto, LA",
+          "On Repair",
           false,
+          callback
+        );
+      },
+      function (callback) {
+        carInstanceCreate(
+          cars[1],
+          "Blue Planet Driving, TX",
+          "On Loan",
+          false,
+          callback
+        );
+      },
+      function (callback) {
+        carInstanceCreate(
+          cars[1],
+          "In Stock Car, NY",
           "Available",
+          false,
           callback
         );
       },
       function (callback) {
-        bookInstanceCreate(
-          books[3],
-          "New York Tom Doherty Associates, 2016.",
-          false,
+        carInstanceCreate(
+          cars[2],
+          "In Stock Car, NY",
           "Available",
+          false,
           callback
         );
       },
       function (callback) {
-        bookInstanceCreate(
-          books[3],
-          "New York Tom Doherty Associates, 2016.",
+        carInstanceCreate(
+          cars[2],
+          "One Shot Drive, FL",
+          "On Repair",
           false,
+          callback
+        );
+      },
+      function (callback) {
+        carInstanceCreate(
+          cars[3],
+          "One Shot Drive, FL",
+          "Sold",
+          false,
+          callback
+        );
+      },
+      function (callback) {
+        carInstanceCreate(
+          cars[3],
+          "A Better Drive, NY",
           "Available",
+          false,
           callback
         );
       },
       function (callback) {
-        bookInstanceCreate(
-          books[4],
-          "New York, NY Tom Doherty Associates, LLC, 2015.",
-          false,
+        carInstanceCreate(
+          cars[4],
+          "Excalibur Motors, LA",
           "Available",
-          callback
-        );
-      },
-      function (callback) {
-        bookInstanceCreate(
-          books[4],
-          "New York, NY Tom Doherty Associates, LLC, 2015.",
           false,
-          "Maintenance",
           callback
         );
-      },
-      function (callback) {
-        bookInstanceCreate(
-          books[4],
-          "New York, NY Tom Doherty Associates, LLC, 2015.",
-          false,
-          "Loaned",
-          callback
-        );
-      },
-      function (callback) {
-        bookInstanceCreate(books[0], "Imprint XXX2", false, false, callback);
-      },
-      function (callback) {
-        bookInstanceCreate(books[1], "Imprint XXX3", false, false, callback);
       },
     ],
     // Optional callback
@@ -588,7 +582,7 @@ function createCarInstances(cb) {
 }
 
 async.series(
-  [createGenreAuthors, createBooks, createBookInstances],
+  [createCarManufacturerBodyBrand, createCars, createCarInstances],
   // Optional callback
   function (err, results) {
     if (err) {
