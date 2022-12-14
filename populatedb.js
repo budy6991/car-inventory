@@ -347,6 +347,55 @@ function createCarManufacturerBodyBrand(cb) {
           callback
         );
       },
+      function (callback) {
+        brandCreate(
+          "Toyota",
+          "Toyota Automobile, is along with Lexus one of the main brands of the Toyota Motor Corporation headquartered in Japan.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Fiat",
+          "Fiat Automobiles S.p.A. is an Italian automobile manufacturer, formerly part of Fiat Chrysler Automobiles, and since 2021 a subsidiary of Stellantis through its Italian division Stellantis Italy.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Masserati",
+          "Maserati S.p.A. is an Italian luxury vehicle manufacturer. Established on 1 December 1914, in Bologna, Italy, the company's headquarters are now in Modena, and its emblem is a trident. The company has been owned by Stellantis since 2021. Maserati was initially associated with Ferrari. ",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Alfa Romeo",
+          "Alfa Romeo Automobiles S.p.A. is an Italian luxury car manufacturer and a subsidiary of Stellantis. The company was founded on 24 June 1910, in Milan, Italy. 'Alfa' is an acronym of its founding name, 'Anonima Lombarda Fabbrica Automobili.' 'Anonima' means 'anonymous', which was a legal form of company at the time.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Citroën",
+          "Citroen is a French automobile brand. The 'Automobiles Citroën' manufacturing company was founded in March 1919 by André Citroën. Citroën is owned by Stellantis since 2021 and previously was part of the PSA Group after Peugeot acquired 89.95% share in 1976.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Opel",
+          "Opel Automobile GmbH usually shortened to Opel, is a German automobile manufacturer which has been a subsidiary of Stellantis since 16 January 2021.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Peugeot",
+          "Peugeot is a French brand of automobiles owned by Stellantis. The family business that preceded the current Peugeot companies was founded in 1810, with a steel foundry that soon started making hand tools and kitchen equipment, and then bicycles. On 20 November 1858, Émile Peugeot applied for the lion trademark.",
+          callback
+        );
+      },
     ],
     // optional callback
     cb
