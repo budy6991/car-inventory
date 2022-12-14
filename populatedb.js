@@ -438,7 +438,7 @@ function createCars(cb) {
           "Acura",
           "Integra",
           "2023",
-          "An upscale version of the famour Honda Civic",
+          "An upscale version of the famous Honda Civic",
           35800,
           manufacturers[0],
           carBodies[7],
@@ -451,11 +451,37 @@ function createCars(cb) {
           "Kia",
           "Sportage",
           "2023",
-          "Redesigned version of the famour SUV",
+          "Redesigned version of the famous SUV",
           30800,
           manufacturers[8],
           carBodies[10],
           brands[4],
+          callback
+        );
+      },
+      function (callback) {
+        carCreate(
+          "Lexus",
+          "LC",
+          "2023",
+          "Luxury car from Lexus",
+          101200,
+          manufacturers[3],
+          carBodies[6],
+          brands[6],
+          callback
+        );
+      },
+      function (callback) {
+        carCreate(
+          "Audi",
+          "R8",
+          "2023",
+          "Supercar from the german brand, that shares some components with the Lamborghini Gallardo",
+          185000,
+          manufacturers[2],
+          carBodies[4],
+          brands[14],
           callback
         );
       },
@@ -465,11 +491,11 @@ function createCars(cb) {
   );
 }
 
-function createBookInstances(cb) {
+function createCarInstances(cb) {
   async.parallel(
     [
       function (callback) {
-        bookInstanceCreate(
+        carInstanceCreate(
           books[0],
           "London Gollancz, 2014.",
           false,
