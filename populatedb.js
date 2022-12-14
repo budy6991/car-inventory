@@ -176,6 +176,22 @@ function createCarManufacturerBodyBrand(cb) {
         );
       },
       function (callback) {
+        manufacturerCreate(
+          "Zhejiang Geely Holding Group",
+          "Zhejiang Geely Holding Group Co., Ltd, commonly known as Geely, is a Chinese multinational automotive company headquartered in Hangzhou, Zhejiang. The company is privately held by Chinese billionaire entrepreneur Li Shufu.",
+          "Hong Kong, China",
+          callback
+        );
+      },
+      function (callback) {
+        manufacturerCreate(
+          "Renault-Nissan-Mitsubishi Alliance",
+          "The Renault-Nissan-Mitsubishi Alliance, originally known as the Renault-Nissan Alliance, is a French-Japanese strategic alliance between the automobile manufacturers Renault, Nissan and Mitsubishi Motors, which together sell more than 1 in 9 vehicles worldwide.",
+          "Chennai, India",
+          callback
+        );
+      },
+      function (callback) {
         genreCreate("Fantasy", callback);
       },
       function (callback) {
