@@ -396,6 +396,34 @@ function createCarManufacturerBodyBrand(cb) {
           callback
         );
       },
+      function (callback) {
+        brandCreate(
+          "Audi",
+          "Audi AG is a German automotive manufacturer of luxury vehicles headquartered in Ingolstadt, Bavaria, Germany. As a subsidiary of its parent company, the Volkswagen Group, Audi produces vehicles in nine production facilities worldwide.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Porsche",
+          "Dr. Ing. h.c. F. Porsche AG, usually shortened to Porsche, is a German automobile manufacturer specializing in high-performance sports cars, SUVs and sedans, headquartered in Stuttgart, Baden-Württemberg, Germany.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Porsche",
+          "Dr. Ing. h.c. F. Porsche AG, usually shortened to Porsche, is a German automobile manufacturer specializing in high-performance sports cars, SUVs and sedans, headquartered in Stuttgart, Baden-Württemberg, Germany.",
+          callback
+        );
+      },
+      function (callback) {
+        brandCreate(
+          "Volkswagen",
+          "Volkswagen, abbreviated as VW, is a German motor vehicle manufacturer headquartered in Wolfsburg, Lower Saxony, Germany. ",
+          callback
+        );
+      },
     ],
     // optional callback
     cb
