@@ -192,13 +192,27 @@ function createCarManufacturerBodyBrand(cb) {
         );
       },
       function (callback) {
-        genreCreate("Fantasy", callback);
+        manufacturerCreate(
+          "Ford Motor Company",
+          "Ford Motor Company is an American multinational automobile manufacturer headquartered in Dearborn, Michigan, United States. It was founded by Henry Ford and incorporated on June 16, 1903. The company sells automobiles and commercial vehicles under the Ford brand, and luxury cars under its Lincoln luxury brand.",
+          "Dearborn, Michigan, United States",
+          callback
+        );
       },
       function (callback) {
-        genreCreate("Science Fiction", callback);
+        manufacturerCreate(
+          "Hyundai Motor Group",
+          "Hyundai Motor Company, often abbreviated to Hyundai Motors and commonly known as Hyundai, is a South Korean multinational automotive manufacturer headquartered in Seoul, South Korea, and founded in 1967.",
+          "Seoul, South Korea",
+          callback
+        );
       },
       function (callback) {
-        genreCreate("French Poetry", callback);
+        carBodyCreate(
+          "Hatchback",
+          "Hatchback cars are well-known for their superior storage capacity, which can be accessed with an upward swinging door at the vehicle's rear. The back seats are usually able to fold down to accommodate more storage space. This design philosophy has been applied to superminis, small family cars, and sports cars. The swinging door is counted as an additional door, so a hatchback with two passenger doors is known as a three-door hatchback, while a hatchback with four passenger doors is called a five-door hatchback. The hatchback design dates back to the 1930s with the Citroen 11 CV Commerciale. However, the term “hatchback” didn’t appear until the 1970s when cars became popular, economical machines for transportation. Some popular hatchbacks today include the Ford Focus, Volkswagen Golf, and Mercedes A-class. ",
+          callback
+        );
       },
     ],
     // optional callback
