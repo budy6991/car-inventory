@@ -210,7 +210,84 @@ function createCarManufacturerBodyBrand(cb) {
       function (callback) {
         carBodyCreate(
           "Hatchback",
-          "Hatchback cars are well-known for their superior storage capacity, which can be accessed with an upward swinging door at the vehicle's rear. The back seats are usually able to fold down to accommodate more storage space. This design philosophy has been applied to superminis, small family cars, and sports cars. The swinging door is counted as an additional door, so a hatchback with two passenger doors is known as a three-door hatchback, while a hatchback with four passenger doors is called a five-door hatchback. The hatchback design dates back to the 1930s with the Citroen 11 CV Commerciale. However, the term “hatchback” didn’t appear until the 1970s when cars became popular, economical machines for transportation. Some popular hatchbacks today include the Ford Focus, Volkswagen Golf, and Mercedes A-class. ",
+          "A hatchback is a car body configuration with a rear door that swings upward to provide access to a cargo area. Hatchbacks may feature fold-down second row seating, where the interior can be reconfigured to prioritize passenger or cargo volume. Hatchbacks may feature two- or three-box design.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Minivan",
+          "Minivan is a North American car classification for vehicles designed to transport passengers in the rear seating row, with reconfigurable seats in two or three rows. The equivalent classification in Europe is MPV.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Crossover",
+          "A crossover, crossover SUV, or crossover utility vehicle is a type of automobile with increased ride height that is built on unibody chassis construction shared with passenger cars, as opposed to traditional sport utility vehicles which are built on a body-on-frame chassis construction similar to pickup trucks",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Coupe",
+          "A coupe or coupé is a passenger car with a sloping or truncated rear roofline and two doors. The term coupé was first applied to horse-drawn carriages for two passengers without rear-facing seats. It comes from the French past participle of couper, 'cut'.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Supercar",
+          "A supercar - also called exotic car - is a loosely defined description of street-legal, high-performance sports cars. Since the 2010s, the term hypercar has come into use for the highest performing supercars.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Kammback",
+          "A Kammback—also known as a Kamm tail or K-tail—is an automotive styling feature wherein the rear of the car slopes downwards before being abruptly cut off with a vertical or near-vertical surface.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Cabriolet/Convertible",
+          "A convertible or cabriolet is a passenger car that can be driven with or without a roof in place. The methods of retracting and storing the roof vary among eras and manufacturers. A convertible car's design allows an open-air driving experience, with the ability to provide a roof when required.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Sedan",
+          "A sedan or saloon is a passenger car in a three-box configuration with separate compartments for an engine, passengers, and cargo. The first recorded use of the word 'sedan' in reference to an automobile body occurred in 1912.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Campervan",
+          "A camper van, also referred to as a camper, caravanette, motor caravan or RV (recreational vehicle) in North America, is a self-propelled vehicle that provides both transport and sleeping accommodation.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Micro Car",
+          "Microcar is a term often used for the smallest size of cars, with three or four wheels and often an engine smaller than 700 cc (43 cu in).",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "SUV",
+          "A sport utility vehicle is a car classification that combines elements of road-going passenger cars with features from off-road vehicles, such as raised ground clearance and four-wheel drive. There is no commonly agreed-upon definition of an SUV and usage of the term varies between countries.",
+          callback
+        );
+      },
+      function (callback) {
+        carBodyCreate(
+          "Roadster",
+          "A roadster is an open two-seat car with emphasis on sporting appearance or character. Initially an American term for a two-seat car with no weather protection, usage has spread internationally and has evolved to include two-seat convertibles.",
           callback
         );
       },
