@@ -48,6 +48,7 @@ function carCreate(
     model: model,
     year: year,
     description: description,
+    price: price,
     manufacturer: manufacturer,
     car_body: car_body,
     brand: brand,
