@@ -29,5 +29,5 @@ exports.carinstance_update_get = (req, res) => {
 };
 
 exports.carinstance_update_post = (req, res) => {
-  res.send("Not implemented CarInstance update GET");
+  res.send("Not implemented CarInstance update POST");
 };
