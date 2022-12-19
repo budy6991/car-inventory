@@ -44,3 +44,21 @@ router.post("/brand/:id/update", brand_controller.brand_update_post);
 router.get("/brand/:id", brand_controller.brand_detail);
 
 router.get("/brands", brand_controller.brand_list);
+
+// Car Body Routes.
+
+router.get("/carbody/create", carbody_controller.carbody_create_get);
+
+router.post("/carbody/create", carbody_controller.carbody_create_post);
+
+router.get("/carbody/:id/delete", carbody_controller.carbody_delete_get);
+
+router.post("/carbody/:id/delete", carbody_controller.carbody_delete_post);
+
+router.get("/carbody/:id/update", carbody_controller.carbody_update_get);
+
+router.post("/carbody/:id/update", carbody_controller.carbody_update_post);
+
+router.get("/carbody/:id", carbody_controller.carbody_detail);
+
+router.get("/carbodies", carbody_controller.carbody_list);
