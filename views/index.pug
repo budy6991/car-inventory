@@ -3,4 +3,16 @@ extends layout
 block content
   h1= title
   p Welcome to the Car Inventory application run on server side. 
+
+  if error
+    p There was an error trying to retrieve the data
+  else 
+    p The Car Inventor has the following record counts: 
+    ul
+      li #[strong Cars :] !{data.car_count}
+      li #[strong Total Cars:] !{data.carinstance_count}
+      li #[strong Cars available:] !{data.carinstance_available_count}
+      li #[strong Manufacturers:] !{data.manufacturer_count}
+      li #[strong Brands:] !{data.brand_count}
+      li #[strong Car Bodies:] !{data.carbody_count}
   

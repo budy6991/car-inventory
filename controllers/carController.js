@@ -21,6 +21,9 @@ exports.index = (req, res, next) => {
       manufacturer_count(callback) {
         Manufacturer.countDocuments({}, callback);
       },
+      carinstance_count(callback) {
+        CarInstance.countDocuments({}, callback);
+      },
       carinstance_available_count(callback) {
         CarInstance.countDocuments({ status: "Available" }, callback);
       },
