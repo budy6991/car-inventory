@@ -4,8 +4,35 @@ const CarBody = require("../models/carBody");
 const Manufacturer = require("../models/manufacturer");
 const CarInstance = require("../models/carInstance");
 
+const async = require("async");
+
 exports.index = (req, res, next) => {
-  res.send("Not implemented: Site Home Page");
+  async.parallel(
+    {
+      car_count(callback) {
+        Car.countDocuments({}, callback);
+      },
+      brand_count(callback) {
+        Brand.countDocuments({}, callback);
+      },
+      carbody_count(callback) {
+        CarBody.countDocuments({}, callback);
+      },
+      manufacturer_count(callback) {
+        Manufacturer.countDocuments({}, callback);
+      },
+      carinstance_available_count(callback) {
+        CarInstance.countDocuments({ status: "Available" }, callback);
+      },
+    },
+    (err, results) => {
+      res.render("index", {
+        title: "Car Inventory Home",
+        error: err,
+        data: results,
+      });
+    }
+  );
 };
 
 exports.car_list = (req, res) => {
