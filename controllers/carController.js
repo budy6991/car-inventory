@@ -1,6 +1,10 @@
 const Car = require("../models/car");
+const Brand = require("../models/brand");
+const CarBody = require("../models/carBody");
+const Manufacturer = require("../models/manufacturer");
+const CarInstance = require("../models/carInstance");
 
-exports.index = (req, res) => {
+exports.index = (req, res, next) => {
   res.send("Not implemented: Site Home Page");
 };
 
