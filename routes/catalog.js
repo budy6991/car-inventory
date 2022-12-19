@@ -62,3 +62,39 @@ router.post("/carbody/:id/update", carbody_controller.carbody_update_post);
 router.get("/carbody/:id", carbody_controller.carbody_detail);
 
 router.get("/carbodies", carbody_controller.carbody_list);
+
+// Car Instances Routes
+
+router.get(
+  "/carinstance/create",
+  carinstance_controller.carinstance_create_get
+);
+
+router.post(
+  "/carinstance/create",
+  carinstance_controller.carinstance_create_post
+);
+
+router.get(
+  "/carinstance/:id/delete",
+  carinstance_controller.carinstance_delete_get
+);
+
+router.post(
+  "/carinstance/:id/delete",
+  carinstance_controller.carinstance_delete_post
+);
+
+router.get(
+  "/carinstance/:id/update",
+  carinstance_controller.carinstance_update_get
+);
+
+router.post(
+  "/carinstance/:id/update",
+  carinstance_controller.carinstance_update_post
+);
+
+router.get("/carinstance/:id", carinstance_controller.caristance_detail);
+
+router.get("/carinstances", carinstance_controller.carinstance_list);
