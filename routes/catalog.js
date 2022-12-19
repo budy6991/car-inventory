@@ -135,3 +135,5 @@ router.post(
 router.get("/manufacturer/:id", manufacturer_controller.manufacturer_detail);
 
 router.get("/manufacturers", manufacturer_controller.manufacturer_list);
+
+module.exports = router;
