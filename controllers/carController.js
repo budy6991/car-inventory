@@ -51,8 +51,36 @@ exports.car_list = (req, res, next) => {
     });
 };
 
-exports.car_detail = (req, res) => {
-  res.send(`Not implemented Car Detail: ${req.params.id}`);
+exports.car_detail = (req, res, next) => {
+  async.parallel(
+    {
+      car(callback) {
+        Car.findById(req.params.id)
+          .populate("Manufacturer")
+          .populate("CarBody")
+          .populate("Brand")
+          .exec(callback);
+      },
+      car_instance(callback) {
+        CarInstance.find({ car: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car == null) {
+        const err = new Error("Car not found");
+        err.status = 404;
+        return next(err);
+      }
+      res.render("car_detail", {
+        title: results.car.fullModelName,
+        car: results.car,
+        car_instances: results.car_instance,
+      });
+    }
+  );
 };
 
 exports.car_create_get = (req, res) => {
