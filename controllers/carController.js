@@ -56,9 +56,9 @@ exports.car_detail = (req, res, next) => {
     {
       car(callback) {
         Car.findById(req.params.id)
-          .populate("Manufacturer")
-          .populate("CarBody")
-          .populate("Brand")
+          .populate("manufacturer")
+          .populate("car_body")
+          .populate("brand")
           .exec(callback);
       },
       car_instance(callback) {
@@ -66,6 +66,7 @@ exports.car_detail = (req, res, next) => {
       },
     },
     (err, results) => {
+      console.log(results.car_instance);
       if (err) {
         return next(err);
       }
