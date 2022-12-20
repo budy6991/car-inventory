@@ -1,4 +1,4 @@
-$main-color: orange;
+$main-color: rgb(255, 166, 0);
 $secondary-color: blue;
 
 body {
@@ -8,15 +8,7 @@ body {
 }
 
 a {
-  color: #00b7ff;
-}
-
-p {
   color: $main-color;
-}
-
-li {
-  list-style: none;
 }
 
 hr {
@@ -33,8 +25,15 @@ hr {
   background-color: rgb(255, 255, 255);
   li {
     margin: 20px;
+    list-style: none;
   }
 }
 
 .container-content {
+  li {
+    margin-top: 25px;
+  }
+  a {
+    color: blue;
+  }
 }

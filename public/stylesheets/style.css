@@ -5,15 +5,7 @@ body {
 }
 
 a {
-  color: #00b7ff;
-}
-
-p {
-  color: orange;
-}
-
-li {
-  list-style: none;
+  color: rgb(255, 166, 0);
 }
 
 hr {
@@ -31,4 +23,12 @@ hr {
 }
 .sidenav-fixed li {
   margin: 20px;
+  list-style: none;
+}
+
+.container-content li {
+  margin-top: 25px;
+}
+.container-content a {
+  color: blue;
 }/*# sourceMappingURL=style.css.map */
