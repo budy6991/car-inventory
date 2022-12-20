@@ -39,7 +39,16 @@ exports.index = (req, res, next) => {
 };
 
 exports.car_list = (req, res, next) => {
-  Car.find({});
+  Car.find({}, "name model year")
+    .sort({ name: 1 })
+    .populate("brand")
+    .populate("car_body")
+    .exec(function (err, list_cars) {
+      if (err) {
+        return next(err);
+      }
+      res.render("car_list", { title: "Car List", car_list: list_cars });
+    });
 };
 
 exports.car_detail = (req, res) => {
