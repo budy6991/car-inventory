@@ -7,7 +7,7 @@ const CarInstanceSchema = new Schema({
   status: {
     type: String,
     required: true,
-    enum: ["Available", "On loan", "On Repair", "Reserved", "Sold"],
+    enum: ["Available", "On Loan", "On Repair", "Reserved", "Sold"],
     default: "Available",
   },
   available: { type: Date, default: Date.now },

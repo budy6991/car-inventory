@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul 
+    each val in carinstance_list 
+      li
+        a(href=val.url)  #{val.car.fullModelName} : #{val.authorized_dealer} - 
+        if val.status=='Available'
+          span.text-success #{val.status}
+        else if val.status=='On Repair'
+          span.text-danger #{val.status}
+        else if val.status=='On Loan'
+          span.text-warning #{val.status}
+        else if val.status=='Reserved'
+          span.text-reserved #{val.status}
+        else 
+          span.text-sold
+        
+    
+    else 
+      li There are no cars available in any store at the moment.

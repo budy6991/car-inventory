@@ -5,7 +5,7 @@ body {
 }
 
 a {
-  color: rgb(255, 166, 0);
+  color: rgb(255, 123, 0);
 }
 
 hr {
@@ -22,7 +22,7 @@ hr {
   background-color: rgb(255, 255, 255);
 }
 .sidenav-fixed li {
-  margin: 20px;
+  margin-top: 20px;
   list-style: none;
 }
 
@@ -31,4 +31,25 @@ hr {
 }
 .container-content a {
   color: blue;
+  text-decoration: none;
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-warning {
+  color: yellow;
+}
+
+.text-reserved {
+  color: grey;
+}
+
+.text-sold {
+  color: black;
 }/*# sourceMappingURL=style.css.map */

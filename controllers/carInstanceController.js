@@ -1,7 +1,17 @@
 const CarInstance = require("../models/carInstance");
 
-exports.carinstance_list = (req, res) => {
-  res.send("Not implemented Car Instance Lists");
+exports.carinstance_list = (req, res, next) => {
+  CarInstance.find()
+    .populate("car")
+    .exec(function (err, list_carinstance) {
+      if (err) {
+        return next(err);
+      }
+      res.render("carinstance_list", {
+        title: "Car Instance List",
+        carinstance_list: list_carinstance,
+      });
+    });
 };
 
 exports.caristance_detail = (req, res) => {

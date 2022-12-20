@@ -1,4 +1,4 @@
-$main-color: rgb(255, 166, 0);
+$main-color: rgb(255, 123, 0);
 $secondary-color: blue;
 
 body {
@@ -24,7 +24,7 @@ hr {
 .sidenav-fixed {
   background-color: rgb(255, 255, 255);
   li {
-    margin: 20px;
+    margin-top: 20px;
     list-style: none;
   }
 }
@@ -35,5 +35,26 @@ hr {
   }
   a {
     color: blue;
+    text-decoration: none;
   }
+}
+
+.text-success {
+  color: green;
+}
+
+.text-danger {
+  color: red;
+}
+
+.text-warning {
+  color: yellow;
+}
+
+.text-reserved {
+  color: grey;
+}
+
+.text-sold {
+  color: black;
 }
