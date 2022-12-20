@@ -23,7 +23,7 @@ exports.brand_detail = (req, res, next) => {
         Brand.findById(req.params.id).exec(callback);
       },
       brand_cars(callback) {
-        Car.findById({ brand: req.params.id }).exec(callback);
+        Car.find({ brand: req.params.id }).exec(callback);
       },
     },
     (err, results) => {

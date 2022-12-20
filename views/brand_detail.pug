@@ -1,9 +1,9 @@
 extends layout
 
 block content
-  h1= title
+  
 
-  h2 Brand: #{brand.name}
+  h1 Brand: #{brand.name}
   
   div(style='margin-left:20px;margin-top:20px')
 
@@ -12,7 +12,7 @@ block content
     dl 
       each car in brand_cars
         dt 
-          a(href=car.url) #{car.name}
+          a(href=car.url) #{car.fullModelName}
         dd #{car.description}
       
       else
