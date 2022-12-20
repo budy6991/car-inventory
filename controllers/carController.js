@@ -38,8 +38,8 @@ exports.index = (req, res, next) => {
   );
 };
 
-exports.car_list = (req, res) => {
-  res.send("Not implemented: Car List");
+exports.car_list = (req, res, next) => {
+  Car.find({});
 };
 
 exports.car_detail = (req, res) => {

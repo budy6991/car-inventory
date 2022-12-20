@@ -16,6 +16,7 @@ const CarSchema = new Schema({
 
 CarSchema.virtual("fullModelName").get(function () {
   let fullModelName = `${this.name} ${this.model}, ${this.year}, (${this.car_body})`;
+  return fullModelName;
 });
 
 // Virtual for Car's URL
