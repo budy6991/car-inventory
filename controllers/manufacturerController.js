@@ -1,7 +1,17 @@
 const Manufacturer = require("../models/manufacturer");
 
-exports.manufacturer_list = (req, res) => {
-  res.send("Not implemented: Manufacturer List");
+exports.manufacturer_list = (req, res, next) => {
+  Manufacturer.find({}, "name headquarters")
+    .sort({ name: 1 })
+    .exec(function (err, list_manufacturer) {
+      if (err) {
+        return next(err);
+      }
+      res.render("manufacturer_list", {
+        title: "List of car manufacturers",
+        manufacturer_list: list_manufacturer,
+      });
+    });
 };
 
 exports.manufacturer_detail = (req, res) => {
