@@ -1,7 +1,17 @@
 const CarBody = require("../models/carBody");
 
-exports.carbody_list = (req, res) => {
-  res.send("Not implemented CarBody list");
+exports.carbody_list = (req, res, next) => {
+  CarBody.find()
+    .sort({ name: 1 })
+    .exec(function (err, list_carbody) {
+      if (err) {
+        return next(err);
+      }
+      res.render("carbody_list", {
+        title: "List of car body types",
+        carbody_list: list_carbody,
+      });
+    });
 };
 
 exports.carbody_detail = (req, res) => {
