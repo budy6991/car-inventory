@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: rgb(255, 250, 250);
 }
@@ -9,5 +9,26 @@ a {
 }
 
 p {
-  background-color: blue;
+  color: orange;
+}
+
+li {
+  list-style: none;
+}
+
+hr {
+  color: transparent;
+}
+
+.container-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.sidenav-fixed {
+  background-color: rgb(255, 255, 255);
+}
+.sidenav-fixed li {
+  margin: 20px;
 }/*# sourceMappingURL=style.css.map */

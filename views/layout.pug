@@ -4,7 +4,37 @@ html(lang='en')
     meta(charset="UTF-8")
     link(rel="stylesheet" href="/stylesheets/style.css")
   body
-    block sidenav
-    
-    block content
+    div.container-main
+      div.sidenav-fixed
+        block sidenav
+          ul 
+            li 
+              a(href='/catalog') Home
+            li 
+              a(href='/catalog/cars') Cars
+            li 
+              a(href='/catalog/brands') Brands
+            li 
+              a(href='/catalog/manufacturers') Manufacturers
+            li 
+              a(href='/catalog/carbodies') Car Body Types
+            li 
+              a(href='/catalog/carinstances') Car Instances
+            li
+              hr
+            li 
+              a(href='/catalog/car/create') Create new car
+            li 
+              a(href='/catalog/brand/create') Create new brand
+            li 
+              a(href='/catalog/manufacturer/create') Create new manufacturer
+            li 
+              a(href='/catalog/carbody/create') Create new car body type
+            li 
+              a(href='/catalog/carinstance/create') Create new car instance
+
+      div.container-content
+        block content
+
+  
     
