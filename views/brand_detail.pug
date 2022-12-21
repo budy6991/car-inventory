@@ -3,11 +3,13 @@ extends layout
 block content
   
 
-  h1 Brand: #{brand.name}
+  h1 #{brand.name}
+
+  p #{brand.description}
   
   div(style='margin-left:20px;margin-top:20px')
 
-    h4 #{brand.name} cars:
+    h4 #{brand.name} cars inventory:
 
     dl 
       each car in brand_cars
