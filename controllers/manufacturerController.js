@@ -1,4 +1,7 @@
 const Manufacturer = require("../models/manufacturer");
+const Car = require("../models/car");
+const Brand = require("../models/car");
+const async = require("async");
 
 exports.manufacturer_list = (req, res, next) => {
   Manufacturer.find({}, "name headquarters")
@@ -14,8 +17,12 @@ exports.manufacturer_list = (req, res, next) => {
     });
 };
 
-exports.manufacturer_detail = (req, res) => {
-  res.send(`Not implemented: Manufacturer Detail: ${req.params.id}`);
+exports.manufacturer_detail = (req, res, next) => {
+  async.parallel({
+    manufacturer(callback) {
+      Manufacturer.findById(req.param.id).exec(callback);
+    },
+  });
 };
 
 exports.manufacturer_create_get = (req, res) => {

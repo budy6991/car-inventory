@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const BrandSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
+  manufacturer: { type: Schema.Types.ObjectId, ref: "Manufacturer" },
 });
 
 BrandSchema.virtual("url").get(function () {
