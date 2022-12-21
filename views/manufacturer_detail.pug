@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  
+  
+
+  h1 #{manufacturer.name}
+
+  p #{manufacturer.description}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 #{manufacturer.name} brands inventory:
+
+    dl 
+      each brand in cars
+        dt 
+          a(href=brand.brand.url) #{brand.brand.name}
+        
+      
+      else
+        p The current manufacturer has no brands in our records. 
