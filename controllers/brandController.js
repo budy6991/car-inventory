@@ -1,6 +1,7 @@
 const Brand = require("../models/brand");
 const Car = require("../models/car");
 const async = require("async");
+const { body, validationResult } = require("express-validator");
 
 exports.brand_list = (req, res, next) => {
   Brand.find()
@@ -44,8 +45,8 @@ exports.brand_detail = (req, res, next) => {
   );
 };
 
-exports.brand_create_get = (req, res) => {
-  res.send("Not implemented Brand Create GET");
+exports.brand_create_get = (req, res, next) => {
+  res.render("brand_form", { title: "Create Brand" });
 };
 
 exports.brand_create_post = (req, res) => {

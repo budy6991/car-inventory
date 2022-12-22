@@ -14,8 +14,16 @@ exports.carbody_list = (req, res, next) => {
     });
 };
 
-exports.carbody_detail = (req, res) => {
-  res.send(`Not implemented CarBody detail: ${req.params.id}`);
+exports.carbody_detail = (req, res, next) => {
+  CarBody.findById(req.params.id).exec(function (err, carbody_detail) {
+    if (err) {
+      return next(err);
+    }
+    res.render("carbody_detail", {
+      title: "Car Body Type detail",
+      carbody: carbody_detail,
+    });
+  });
 };
 
 exports.carbody_create_get = (req, res) => {
