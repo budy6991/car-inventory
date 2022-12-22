@@ -1,4 +1,5 @@
 const CarBody = require("../models/carBody");
+const { body, validationResult } = require("express-validator");
 
 exports.carbody_list = (req, res, next) => {
   CarBody.find()
@@ -27,12 +28,47 @@ exports.carbody_detail = (req, res, next) => {
 };
 
 exports.carbody_create_get = (req, res) => {
-  res.send("Not implemented CarBody create GET");
+  res.render("carbody_form", { title: "Create car body type" });
 };
 
-exports.carbody_create_post = (req, res) => {
-  res.send("Not implemented CarBody create POST");
-};
+exports.carbody_create_post = [
+  body("name", "Car body name required").trim().isLength({ min: 1 }).escape,
+  body("description", "Description required")
+    .trim()
+    .islength({ min: 1 })
+    .escape(),
+  (req, res, next) => {
+    const errors = valitationResult(req);
+    const carbody = new CarBody({
+      name: req.body.name,
+      description: req.body.description,
+    });
+    if (!errors.isEmpty()) {
+      res.render("carbody_form", {
+        title: "Create car body type",
+        carbody,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      CarBody.findOne({ name: req.body.name }).exec((err, found_carbody) => {
+        if (err) {
+          return next(err);
+        }
+        if (found_carbody) {
+          res.redirect(found_carbody.url);
+        } else {
+          carbody.save((err) => {
+            if (err) {
+              return next(err);
+            }
+            res.redirect(carbody.url);
+          });
+        }
+      });
+    }
+  },
+];
 
 exports.carbody_delete_get = (req, res) => {
   res.send("Not implemented CarBody delete GET");
