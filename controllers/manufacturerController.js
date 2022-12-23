@@ -59,15 +59,40 @@ exports.manufacturer_create_get = (req, res, next) => {
       return next(err);
     }
     res.render("manufacturer_form", {
-      title: "Create a manufacturer",
+      title: "Create Manufacturer",
       brand_list: brands,
     });
   });
 };
 
-exports.manufacturer_create_post = (req, res) => {
-  res.send("Not implemented: Manufacturer Create POST");
-};
+exports.manufacturer_create_post = [
+  body("name")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Name must be specified")
+    .isAlphanumeric()
+    .withMessage("Name has non-alphanumeric characters"),
+  body("description")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Please provide a description"),
+  body("headquarters", "Please provide headquarters information")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("brands", "Select at least one brand")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render("manufacturer_form", { title: "Create Manufacturer" });
+    }
+  },
+];
 
 exports.manufacturer_delete_get = (req, res) => {
   res.send("Not implemented: Manufacturer Delete Get");
