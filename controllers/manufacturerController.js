@@ -2,6 +2,7 @@ const Manufacturer = require("../models/manufacturer");
 const Car = require("../models/car");
 const Brand = require("../models/brand");
 const async = require("async");
+const { body, validationResult } = require("express-validator");
 
 exports.manufacturer_list = (req, res, next) => {
   Manufacturer.find({}, "name headquarters")
@@ -52,8 +53,16 @@ exports.manufacturer_detail = (req, res, next) => {
   );
 };
 
-exports.manufacturer_create_get = (req, res) => {
-  res.send("Not implemented: Manufacturer Create GET");
+exports.manufacturer_create_get = (req, res, next) => {
+  Brand.find({}, "name").exec((err, brands) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("manufacturer_form", {
+      title: "Create a manufacturer",
+      brand_list: brands,
+    });
+  });
 };
 
 exports.manufacturer_create_post = (req, res) => {
