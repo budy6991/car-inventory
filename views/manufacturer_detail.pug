@@ -12,13 +12,9 @@ block content
 
     h4 #{manufacturer.name} brands inventory:
 
-    dl 
-      each brand in cars
-        dt 
-          a(href=brand.brand.url) #{brand.brand.name}
         
     dl
-      each brand in brands 
+      each brand in manufacturer.brands
         dt 
           a(href=brand.url) #{brand.name}
 

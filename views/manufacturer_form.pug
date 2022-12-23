@@ -18,7 +18,7 @@ block content
     div.form-group
       label(for='brands') Brands:
       each brand in brand_list
-        input(type='checkbox' name='brands' placeholder='Select the brands associated with the manufacturer' value=brand._id)
+        input(type='checkbox' name='brands' placeholder='Select the brands associated with the manufacturer' value=brand._id checked=brand.checked)
         label(for=brand._id) #{brand.name}
     button(type='submit') Submit 
   

@@ -22,11 +22,9 @@ exports.manufacturer_detail = (req, res, next) => {
   async.parallel(
     {
       manufacturer(callback) {
-        Manufacturer.findById(req.params.id).exec(callback);
+        Manufacturer.findById(req.params.id).populate("brands").exec(callback);
       },
-      manufacturer_brands(callback) {
-        Brand.find({ manufacturer: req.params.id }).exec(callback);
-      },
+
       manufacturer_cars(callback) {
         Car.find({ manufacturer: req.params.id })
           .populate("brand")
@@ -34,7 +32,6 @@ exports.manufacturer_detail = (req, res, next) => {
       },
     },
     (err, results) => {
-      console.log(results);
       if (err) {
         return next(err);
       }
@@ -46,9 +43,9 @@ exports.manufacturer_detail = (req, res, next) => {
       res.render("manufacturer_detail", {
         title: "Manufacturer Detail",
         manufacturer: results.manufacturer,
-        brands: results.manufacturer_brands,
         cars: results.manufacturer_cars,
       });
+      console.log(results);
     }
   );
 };
@@ -66,6 +63,13 @@ exports.manufacturer_create_get = (req, res, next) => {
 };
 
 exports.manufacturer_create_post = [
+  (req, res, next) => {
+    if (!Array.isArray(req.body.brands)) {
+      req.body.brands =
+        typeof req.body.brands === "undefined" ? [] : [req.body.brands];
+    }
+    return next();
+  },
   body("name")
     .trim()
     .isLength({ min: 1 })
@@ -82,11 +86,9 @@ exports.manufacturer_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("brands", "Select at least one brand")
-    .trim()
-    .isLength({ min: 1 })
-    .escape(),
+  body("brands.*").escape(),
   (req, res, next) => {
+    console.log(req.body);
     const errors = validationResult(req);
     const manufacturer = new Manufacturer({
       name: req.body.name,
@@ -98,6 +100,11 @@ exports.manufacturer_create_post = [
       Brand.find({}, "name").exec(function (err, brands) {
         if (err) {
           return next(err);
+        }
+        for (const brand in brands) {
+          if (brand.includes(brand._id)) {
+            brand.checked = "true";
+          }
         }
         res.render("manufacturer_form", {
           title: "Create Manufacturer",
