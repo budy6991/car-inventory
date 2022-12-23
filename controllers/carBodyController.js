@@ -27,22 +27,23 @@ exports.carbody_detail = (req, res, next) => {
   });
 };
 
-exports.carbody_create_get = (req, res) => {
+exports.carbody_create_get = (req, res, next) => {
   res.render("carbody_form", { title: "Create car body type" });
 };
 
 exports.carbody_create_post = [
-  body("name", "Car body name required").trim().isLength({ min: 1 }).escape,
+  body("name", "Car body name required").trim().isLength({ min: 1 }).escape(),
   body("description", "Description required")
     .trim()
-    .islength({ min: 1 })
+    .isLength({ min: 1 })
     .escape(),
   (req, res, next) => {
-    const errors = valitationResult(req);
+    const errors = validationResult(req);
     const carbody = new CarBody({
       name: req.body.name,
       description: req.body.description,
     });
+    console.log("Here");
     if (!errors.isEmpty()) {
       res.render("carbody_form", {
         title: "Create car body type",

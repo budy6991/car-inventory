@@ -6,7 +6,6 @@ const carbody_controller = require("../controllers/carBodyController");
 const car_controller = require("../controllers/carController");
 const carinstance_controller = require("../controllers/carInstanceController");
 const manufacturer_controller = require("../controllers/manufacturerController");
-const manufacturer = require("../models/manufacturer");
 
 // Car Routes
 
