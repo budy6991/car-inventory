@@ -66,7 +66,6 @@ exports.car_detail = (req, res, next) => {
       },
     },
     (err, results) => {
-      console.log(results.car_instance);
       if (err) {
         return next(err);
       }

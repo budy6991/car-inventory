@@ -24,7 +24,6 @@ exports.manufacturer_detail = (req, res, next) => {
       manufacturer(callback) {
         Manufacturer.findById(req.params.id).populate("brands").exec(callback);
       },
-
       manufacturer_cars(callback) {
         Car.find({ manufacturer: req.params.id })
           .populate("brand")
