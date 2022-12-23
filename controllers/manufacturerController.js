@@ -88,9 +88,31 @@ exports.manufacturer_create_post = [
     .escape(),
   (req, res, next) => {
     const errors = validationResult(req);
+    const manufacturer = new Manufacturer({
+      name: req.body.name,
+      description: req.body.description,
+      headquarters: req.body.description,
+      brands: req.body.brands,
+    });
     if (!errors.isEmpty()) {
-      res.render("manufacturer_form", { title: "Create Manufacturer" });
+      Brand.find({}, "name").exec(function (err, brands) {
+        if (err) {
+          return next(err);
+        }
+        res.render("manufacturer_form", {
+          title: "Create Manufacturer",
+          brand_list: brands,
+          selected_brand: manufacturer.brands._id,
+          errors: errors.array(),
+          manufacturer,
+        });
+      });
     }
+    // If data from form is valid:
+    manufacturer.save((err) => {
+      return next(err);
+    });
+    res.redirect(manufacturer.url);
   },
 ];
 
