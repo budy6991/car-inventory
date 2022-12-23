@@ -5,4 +5,18 @@ block content
   
   form(method='POST' action='')
     label(for='name') Name: 
-    input(type='text')
+    input(type='text' name='name' placeholder='Hyundai Motor Group, General Motors, etc' required="true")
+    label(for='description') Description: 
+    textarea(type='textarea' name='description' placeholder='Give a brief explanation of the manufacturer' required="true")
+    label(for='headquarters') Headquaters: 
+    input(type='text' name='headquarters' placeholder='i.e Brooklyn, NY' required="true")
+    label(for='brands') Brands:
+    select(type='select' name='brands' placeholder='Select the brands associated with the manufacturer' required="true")
+      for brand in brand_list
+        option(value=brand._id) #{brand.name}
+    button(type='submit') Submit 
+  
+  if errors 
+    ul 
+      for error in errors 
+        li!= error.msg
