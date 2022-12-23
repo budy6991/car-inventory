@@ -91,7 +91,7 @@ exports.manufacturer_create_post = [
     const manufacturer = new Manufacturer({
       name: req.body.name,
       description: req.body.description,
-      headquarters: req.body.description,
+      headquarters: req.body.headquarters,
       brands: req.body.brands,
     });
     if (!errors.isEmpty()) {

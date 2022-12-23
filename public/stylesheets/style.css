@@ -27,6 +27,10 @@ hr {
   list-style: none;
 }
 
+form div {
+  margin: 50px;
+}
+
 .container-content li {
   margin-top: 25px;
 }

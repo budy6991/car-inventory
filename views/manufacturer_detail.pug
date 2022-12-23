@@ -17,6 +17,10 @@ block content
         dt 
           a(href=brand.brand.url) #{brand.brand.name}
         
-      
+    dl
+      each brand in brands 
+        dt 
+          a(href=brand.url) #{brand.name}
+
       else
         p The current manufacturer has no brands in our records. 
