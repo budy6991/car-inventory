@@ -27,16 +27,18 @@ hr {
   list-style: none;
 }
 
-form div {
-  margin: 50px;
-}
-
 .container-content li {
   margin-top: 25px;
 }
 .container-content a {
   color: blue;
   text-decoration: none;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .text-success {

@@ -50,15 +50,17 @@ exports.manufacturer_detail = (req, res, next) => {
 };
 
 exports.manufacturer_create_get = (req, res, next) => {
-  Brand.find({}, "name").exec((err, brands) => {
-    if (err) {
-      return next(err);
-    }
-    res.render("manufacturer_form", {
-      title: "Create Manufacturer",
-      brand_list: brands,
+  Brand.find({}, "name")
+    .sort({ name: 1 })
+    .exec((err, brands) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("manufacturer_form", {
+        title: "Create Manufacturer",
+        brand_list: brands,
+      });
     });
-  });
 };
 
 exports.manufacturer_create_post = [

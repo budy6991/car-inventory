@@ -2,5 +2,18 @@ extends layout
 
 block content
   
+  h1 #{title}
+
+  form.form-control(method='POST' action='')
+    label(for='name') Name: 
+    input(type='text' name='name' placeholder='BMW, Seat, Audi, etc.' required='true' value=(undefined===brand ? '': brand.name))
+    label(for='description') Description: 
+    textarea(type='textarea' name='description' placeholder='Give a brief explanation of the brand' required='true' value=(undefined===brand? '' : brand.description))
+    label(for='manufacturer') Manufacturer:
+    select(type='select' name='manufacturer' placeholder='Select manufacturer' required='true')
+      each manufacturer in manufacturer_list 
+        option(value=manufacturer._id) #{manufacturer.name}
+    button(type='Submit') Submit 
+
 
   
