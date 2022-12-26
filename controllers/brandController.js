@@ -60,9 +60,41 @@ exports.brand_create_get = (req, res, next) => {
     });
 };
 
-exports.brand_create_post = (req, res) => {
-  res.send("Not implemented Brand Create POST");
-};
+exports.brand_create_post = [
+  body("name", "Brand name is required").trim().isLength({ min: 1 }).escape(),
+  body("description", "Brand description required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("manufacturer").escape(),
+  (req, res, next) => {
+    console.log(req.body);
+    const errors = validationResult(req);
+    const brand = new Brand({
+      name: req.body.name,
+      description: req.body.description,
+      manufacturer: req.body.manufacturer,
+    });
+    if (!errors.isEmpty()) {
+      Manufacturer.find()
+        .sort({ name: 1 })
+        .exec(function (err, list_manufacturer) {
+          if (err) {
+            return next(err);
+          }
+        });
+      res.render("brand_form", {
+        title: "Create Brand",
+        manufacturer_list: list_manufacturer,
+      });
+    }
+    // If data from form is valid:
+    brand.save((err) => {
+      return next(err);
+    });
+    res.redirect(brand.url);
+  },
+];
 
 exports.brand_delete_get = (req, res) => {
   res.send("Not implemented Brand delete GET");
