@@ -1,4 +1,5 @@
 const Brand = require("../models/brand");
+const Manufacturer = require("../models/manufacturer");
 const Car = require("../models/car");
 const async = require("async");
 const { body, validationResult } = require("express-validator");
@@ -46,7 +47,17 @@ exports.brand_detail = (req, res, next) => {
 };
 
 exports.brand_create_get = (req, res, next) => {
-  res.render("brand_form", { title: "Create Brand" });
+  Manufacturer.find()
+    .sort({ name: 1 })
+    .exec(function (err, list_manufacturer) {
+      if (err) {
+        return next(err);
+      }
+      res.render("brand_form", {
+        title: "Create Brand",
+        manufacturer_list: list_manufacturer,
+      });
+    });
 };
 
 exports.brand_create_post = (req, res) => {
