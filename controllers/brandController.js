@@ -22,7 +22,7 @@ exports.brand_detail = (req, res, next) => {
   async.parallel(
     {
       brand(callback) {
-        Brand.findById(req.params.id).exec(callback);
+        Brand.findById(req.params.id).populate("manufacturer").exec(callback);
       },
       brand_cars(callback) {
         Car.find({ brand: req.params.id }).exec(callback);
@@ -68,7 +68,6 @@ exports.brand_create_post = [
     .escape(),
   body("manufacturer").escape(),
   (req, res, next) => {
-    console.log(req.body);
     const errors = validationResult(req);
     const brand = new Brand({
       name: req.body.name,
@@ -82,11 +81,11 @@ exports.brand_create_post = [
           if (err) {
             return next(err);
           }
+          res.render("brand_form", {
+            title: "Create Brand",
+            manufacturer_list: list_manufacturer,
+          });
         });
-      res.render("brand_form", {
-        title: "Create Brand",
-        manufacturer_list: list_manufacturer,
-      });
     }
     // If data from form is valid:
     brand.save((err) => {

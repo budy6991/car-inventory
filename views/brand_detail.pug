@@ -6,6 +6,8 @@ block content
   h1 #{brand.name}
 
   p #{brand.description}
+
+  hr
   
   div(style='margin-left:20px;margin-top:20px')
 
@@ -19,3 +21,11 @@ block content
       
       else
         p The current brand has no cars in our records. 
+
+  hr
+    
+  if brand.manufacturer
+    p #[strong Manufacturer: ] #{brand.manufacturer.name}
+
+  else 
+    h4 There is no manufacturer registered for this brand.

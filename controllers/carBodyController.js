@@ -43,7 +43,6 @@ exports.carbody_create_post = [
       name: req.body.name,
       description: req.body.description,
     });
-    console.log("Here");
     if (!errors.isEmpty()) {
       res.render("carbody_form", {
         title: "Create car body type",

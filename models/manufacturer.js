@@ -6,7 +6,6 @@ const ManufacturerSchema = new Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
   headquarters: { type: String, required: true },
-  brands: [{ type: Schema.Types.ObjectId, ref: "Brand" }],
 });
 
 ManufacturerSchema.virtual("url").get(function () {

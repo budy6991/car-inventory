@@ -22,15 +22,19 @@ exports.manufacturer_detail = (req, res, next) => {
   async.parallel(
     {
       manufacturer(callback) {
-        Manufacturer.findById(req.params.id).populate("brands").exec(callback);
+        Manufacturer.findById(req.params.id).exec(callback);
       },
       manufacturer_cars(callback) {
         Car.find({ manufacturer: req.params.id })
           .populate("brand")
           .exec(callback);
       },
+      manufacturer_brands(callback) {
+        Brand.find({ manufacturer: req.params.id }).exec(callback);
+      },
     },
     (err, results) => {
+      console.log(results);
       if (err) {
         return next(err);
       }
@@ -43,8 +47,8 @@ exports.manufacturer_detail = (req, res, next) => {
         title: "Manufacturer Detail",
         manufacturer: results.manufacturer,
         cars: results.manufacturer_cars,
+        brands: results.manufacturer_brands,
       });
-      console.log(results);
     }
   );
 };
