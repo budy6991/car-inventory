@@ -5,6 +5,7 @@ const { body, validationResult } = require("express-validator");
 exports.carinstance_list = (req, res, next) => {
   CarInstance.find()
     .populate("car")
+    .sort({ status: 1 })
     .exec(function (err, list_carinstance) {
       if (err) {
         return next(err);
