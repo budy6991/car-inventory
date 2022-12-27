@@ -125,7 +125,6 @@ exports.car_create_post = [
   body("brand").escape(),
   body("car_body").escape(),
   (req, res, next) => {
-    console.log(req.body.name);
     const errors = validationResult(req);
     const car = new Car({
       name: req.body.name,
