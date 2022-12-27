@@ -1,4 +1,5 @@
 const CarInstance = require("../models/carInstance");
+const Car = require("../models/car");
 
 exports.carinstance_list = (req, res, next) => {
   CarInstance.find()
@@ -28,8 +29,18 @@ exports.caristance_detail = (req, res, next) => {
     });
 };
 
-exports.carinstance_create_get = (req, res) => {
-  res.send("Not implemented CarInstance Create GET");
+exports.carinstance_create_get = (req, res, next) => {
+  Car.find()
+    .sort({ fullModelName: 1 })
+    .exec(function (err, list_car) {
+      if (err) {
+        return next(err);
+      }
+      res.render("carinstance_form", {
+        title: "Create Car Instance",
+        car_list: list_car,
+      });
+    });
 };
 
 exports.carinstance_create_post = (req, res) => {

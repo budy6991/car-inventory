@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  h1 #{title}
+
+  form.form-control(method='POST' action='')
+    label(for="car") Car : 
+    select(type='select' name='car' required='true')
+      each car in car_list
+        option(value=car.id) #{car.fullModelName}
+    label(for="dealer") Authorized Dealer: 
+    input(type='text' name='dealer' placeholer='i.e New York Car Factory, NY' required='true') 
+    label(for='status') Status: 
+    select(type='select' name='status' required='true')
+      option(value='Available') Available
+      option(value='On Repair') On Repair
+      option(value='On Loan') On Loan
+      option(value='Reserved') Reserved
+      option(value='Sold') Sold
+    label(for="available") Available on: 
+    input(type="date" required='true' name='available') 
+    button(type='submit') Submit
