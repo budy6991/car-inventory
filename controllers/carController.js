@@ -103,9 +103,9 @@ exports.car_create_get = (req, res, next) => {
       }
       res.render("car_form", {
         title: "Create Car",
-        manufacturer_list: list_manufacturer,
-        car_body_list: list_car_body,
-        brand_list: list_brand,
+        manufacturer_list: results.list_manufacturer,
+        car_body_list: results.list_car_body,
+        brand_list: results.list_brand,
       });
     }
   );
