@@ -3,6 +3,7 @@ const Brand = require("../models/brand");
 const CarBody = require("../models/carBody");
 const Manufacturer = require("../models/manufacturer");
 const CarInstance = require("../models/carInstance");
+const { body, validationResult } = require("express-validator");
 
 const async = require("async");
 
@@ -111,9 +112,32 @@ exports.car_create_get = (req, res, next) => {
   );
 };
 
-exports.car_create_post = (req, res) => {
-  res.send("Not implemented Car Create POST");
-};
+exports.car_create_post = [
+  body("name", "Car name required").trim().isLength({ min: 1 }).escape(),
+  body("model", "Car Model required").trim().isLength({ min: 1 }).escape(),
+  body("year", "Year is required").trim().isLength({ min: 1 }).escape(),
+  body("description", "A description is required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "Car price is required").trim().isLength({ min: 1 }).escape(),
+  body("manufacturer").escape(),
+  body("brand").escape(),
+  body("car_body").escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const car = new Car({
+      name: req.body.name,
+      model: req.body.model,
+      year: req.body.year,
+      description: req.body.description,
+      price: req.body.description,
+      manufacturer: req.body.manufacturer,
+      brand: req.body.brand,
+      car_body: req.body.car_body,
+    });
+  },
+];
 
 exports.car_delete_get = (req, res) => {
   res.send("Not implemented Car Delete GET");
