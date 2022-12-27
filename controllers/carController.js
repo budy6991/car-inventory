@@ -136,6 +136,13 @@ exports.car_create_post = [
       brand: req.body.brand,
       car_body: req.body.car_body,
     });
+    if (!errors.isEmpty()) {
+      res.render("car_form", {
+        title: "Create Car",
+        errors: errors.array(),
+        car,
+      });
+    }
   },
 ];
 

@@ -5,25 +5,25 @@ block content
   
   form.form-control(method='POST' action='')
     label(for="name") Name: 
-    input(type='text' name='name' placholder='Acura, BMW, Audi, etc.' required='true') 
+    input(type='text' name='name' placholder='Acura, BMW, Audi, etc.' required='true' value=(undefined===car? '': car.name)) 
     label(for="model") Model: 
-    input(type="text" name='model' placeholder='R8, M5, Golf, etc.' required='true') 
+    input(type="text" name='model' placeholder='R8, M5, Golf, etc.' required='true' value=(undefined===car? '': car.model)) 
     label(for="year") Year: 
-    input(type="number" name='year' placeholder='i.e 2018' required='true')
+    input(type="number" name='year' placeholder='i.e 2018' required='true' value=(undefined===car? '': car.year))
     label(for="description") Description: 
-    textarea(type='textarea' name='description' placeholder='Introduce a brief description of te model' required='true')  
+    textarea(type='textarea' name='description' placeholder='Introduce a brief description of te model' required='true' value=(undefined===car? '': car.description))  
     label(for="price") Price: 
-    input(type="number" name='price' placeholder='Car price' required='true')
+    input(type="number" name='price' placeholder='Car price' required='true' value=(undefined===car? '': car.price))
     label(for="manufacturer") Manufacturer :
-    select(type='select' name='manufacturer' placeholder='Choose a manufacturer' required='true')
+    select(type='select' name='manufacturer' placeholder='Choose a manufacturer' required='true' value=(undefined===car? '': car.manufacturer))
       each manufacturer in manufacturer_list 
         option(value=manufacturer._id) #{manufacturer.name}
     label(for="brand") Brand: 
-    select(type='select' name='brand' placeholder='Choose a car brand' required='true')
+    select(type='select' name='brand' placeholder='Choose a car brand' required='true' value=(undefined===car? '': car.brand))
       each brand in brand_list 
         option(value=brand._id) #{brand.name}
     label(for="car_body") Car body type:  
-    select(type='select' name='car_body' placeholder='Choose a car body' required='true')
+    select(type='select' name='car_body' placeholder='Choose a car body' required='true' value=(undefined===car? '': car.car_body))
       each carbody in car_body_list 
         option(value=carbody._id) #{carbody.name}
     button(type='submit') Submit
