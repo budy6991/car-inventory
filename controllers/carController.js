@@ -83,8 +83,32 @@ exports.car_detail = (req, res, next) => {
   );
 };
 
-exports.car_create_get = (req, res) => {
-  res.send("Not implemented Car Create GET");
+exports.car_create_get = (req, res, next) => {
+  // Name, model, year, price, manufacturer, car_body, brand
+  async.parallel(
+    {
+      list_manufacturer(callback) {
+        Manufacturer.find().sort({ name: 1 }).exec(callback);
+      },
+      list_car_body(callback) {
+        CarBody.find().sort({ name: 1 }).exec(callback);
+      },
+      list_brand(callback) {
+        Brand.find().sort({ name: 1 }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("car_form", {
+        title: "Create Car",
+        manufacturer_list: list_manufacturer,
+        car_body_list: list_car_body,
+        brand_list: list_brand,
+      });
+    }
+  );
 };
 
 exports.car_create_post = (req, res) => {

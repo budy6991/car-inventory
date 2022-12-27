@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1=title 
+  
+  form.form-control(method='POST' action='')
+    label(for="name") Name: 
+    input(type='text' name='name' placholder='Acura, BMW, Audi, etc.' required='true') 
+    label(for="model") Model: 
+    input(type="text" name='model' placeholder='R8, M5, Golf, etc.' required='true') 
+    label(for="year") Year: 
+    input(type="number" name='year' placeholder='i.e 2018' required='true')
+    label(for="description") Description: 
+    textarea(type='textarea' name='description' placeholder='Introduce a brief description of te model' required='true')  
+    label(for="price") Price: 
+    input(type="number" name='price' placeholder='Car price' required='true')
+    label(for="manufacturer") Manufacturer :
+    select(type='select' name='manufacturer' placeholder='Select a manufacturer' required='true')
+      each manufacturer in manufacturer_list 
+        option(value=manufacturer._id) #{manufacturer.name}

@@ -54,27 +54,12 @@ exports.manufacturer_detail = (req, res, next) => {
 };
 
 exports.manufacturer_create_get = (req, res, next) => {
-  Brand.find({}, "name")
-    .sort({ name: 1 })
-    .exec((err, brands) => {
-      if (err) {
-        return next(err);
-      }
-      res.render("manufacturer_form", {
-        title: "Create Manufacturer",
-        brand_list: brands,
-      });
-    });
+  res.render("manufacturer_form", {
+    title: "Create Manufacturer",
+  });
 };
 
 exports.manufacturer_create_post = [
-  (req, res, next) => {
-    if (!Array.isArray(req.body.brands)) {
-      req.body.brands =
-        typeof req.body.brands === "undefined" ? [] : [req.body.brands];
-    }
-    return next();
-  },
   body("name")
     .trim()
     .isLength({ min: 1 })
@@ -91,7 +76,7 @@ exports.manufacturer_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape(),
-  body("brands.*").escape(),
+
   (req, res, next) => {
     console.log(req.body);
     const errors = validationResult(req);
@@ -99,21 +84,14 @@ exports.manufacturer_create_post = [
       name: req.body.name,
       description: req.body.description,
       headquarters: req.body.headquarters,
-      brands: req.body.brands,
     });
     if (!errors.isEmpty()) {
       Brand.find({}, "name").exec(function (err, brands) {
         if (err) {
           return next(err);
         }
-        for (const brand in brands) {
-          if (brand.includes(brand._id)) {
-            brand.checked = "true";
-          }
-        }
         res.render("manufacturer_form", {
           title: "Create Manufacturer",
-          brand_list: brands,
           selected_brand: manufacturer.brands._id,
           errors: errors.array(),
           manufacturer,
