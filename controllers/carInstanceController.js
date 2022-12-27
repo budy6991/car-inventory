@@ -14,8 +14,18 @@ exports.carinstance_list = (req, res, next) => {
     });
 };
 
-exports.caristance_detail = (req, res) => {
-  res.send(`Not implemented Car Instance Detail: ${req.params.id}`);
+exports.caristance_detail = (req, res, next) => {
+  CarInstance.findById(req.params.id)
+    .populate("car")
+    .exec(function (err, carinstance) {
+      if (err) {
+        return next(err);
+      }
+      res.render("carinstance_detail", {
+        reference: carinstance._id,
+        car_instance: carinstance,
+      });
+    });
 };
 
 exports.carinstance_create_get = (req, res) => {

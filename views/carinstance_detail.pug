@@ -1,0 +1,24 @@
+extends layout
+
+block content
+
+  h2 Reference: #{reference}
+  hr
+  div(style='margin-left:20px;margin-top:20px')
+  
+    p #[strong Car: ] 
+      a(href=car_instance.car.url) #{car_instance.car.fullModelName}
+    p #[strong Authorized Dealer: ] #{car_instance.authorized_dealer}
+    p #[strong Status: ]
+      each status in car_instance.status
+        if status=='Available'
+          span.text-success #{status}
+        else if status=='On Repair'
+          span.text-danger #{status}
+        else if status=='On Loan'
+          span.text-warning #{status}
+        else if status=='Reserved'
+          span.text-reserved #{status}
+        else 
+          span.text-sold #{status}
+    p #[strong Available on: ] #{car_instance.available}
