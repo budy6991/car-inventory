@@ -137,11 +137,32 @@ exports.car_create_post = [
       car_body: req.body.car_body,
     });
     if (!errors.isEmpty()) {
-      res.render("car_form", {
-        title: "Create Car",
-        errors: errors.array(),
-        car,
-      });
+      async.parallel(
+        {
+          manufacturers(callback) {
+            Manufacturer.find().sort({ name: 1 }).exec(callback);
+          },
+          brands(callback) {
+            Brand.find().sort({ name: 1 }).exec(callback);
+          },
+          car_bodies(callback) {
+            CarBody.find().sort({ name: 1 }).exec(callback);
+          },
+        },
+
+        (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          res.render("car_form", {
+            title: "Create Car",
+            car,
+            manufacturer_list: results.manufacturers,
+            brand_list: results.brands,
+            car_body_list: results.car_bodies,
+          });
+        }
+      );
     }
   },
 ];
