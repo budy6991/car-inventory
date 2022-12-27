@@ -15,6 +15,15 @@ block content
     label(for="price") Price: 
     input(type="number" name='price' placeholder='Car price' required='true')
     label(for="manufacturer") Manufacturer :
-    select(type='select' name='manufacturer' placeholder='Select a manufacturer' required='true')
+    select(type='select' name='manufacturer' placeholder='Choose a manufacturer' required='true')
       each manufacturer in manufacturer_list 
         option(value=manufacturer._id) #{manufacturer.name}
+    label(for="brand") Brand: 
+    select(type='select' name='brand' placeholder='Choose a car brand' required='true')
+      each brand in brand_list 
+        option(value=brand._id) #{brand.name}
+    label(for="car_body") Car body type:  
+    select(type='select' name='car_body' placeholder='Choose a car body' required='true')
+      each carbody in car_body_list 
+        option(value=carbody._id) #{carbody.name}
+    button(type='submit') Submit
