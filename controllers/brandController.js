@@ -95,8 +95,34 @@ exports.brand_create_post = [
   },
 ];
 
-exports.brand_delete_get = (req, res) => {
-  res.send("Not implemented Brand delete GET");
+exports.brand_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      brand(callback) {
+        Brand.findById(req.params.id).exec(callback);
+      },
+      manufacturer(callback) {
+        Manufacturer.find({ brand: req.params.id }).exec(callback);
+      },
+      car(callback) {
+        Car.find({ brand: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.brand == null) {
+        res.redirect("/catalog/brands");
+      }
+      res.render("brand_delete", {
+        title: "Delete Brand",
+        brand: results.brand,
+        manufacturer: results.manufacturer,
+        car: results.car,
+      });
+    }
+  );
 };
 
 exports.brand_delete_post = (req, res) => {

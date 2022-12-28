@@ -11,7 +11,7 @@ exports.carinstance_list = (req, res, next) => {
         return next(err);
       }
       res.render("carinstance_list", {
-        title: "Car Instance List",
+        title: "Availability",
         carinstance_list: list_carinstance,
       });
     });
