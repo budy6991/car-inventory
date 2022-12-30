@@ -101,9 +101,6 @@ exports.brand_delete_get = (req, res, next) => {
       brand(callback) {
         Brand.findById(req.params.id).exec(callback);
       },
-      manufacturer(callback) {
-        Manufacturer.find({ brand: req.params.id }).exec(callback);
-      },
       car(callback) {
         Car.find({ brand: req.params.id }).exec(callback);
       },
@@ -118,15 +115,42 @@ exports.brand_delete_get = (req, res, next) => {
       res.render("brand_delete", {
         title: "Delete Brand",
         brand: results.brand,
-        manufacturer: results.manufacturer,
         car: results.car,
       });
     }
   );
 };
 
-exports.brand_delete_post = (req, res) => {
-  res.send("Not implemented Brand delete POST");
+exports.brand_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      brand(callback) {
+        Brand.findById(req.body.brandid).exec(callback);
+      },
+      car(callback) {
+        Car.find({ brand: req.body.brandid }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car.length > 0) {
+        res.render("brand_delete", {
+          title: "Delete Brand",
+          brand: results.brand,
+          car: results.car,
+        });
+        return;
+      }
+      Brand.findByIdAndRemove(req.body.brandid, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/catalog/brands");
+      });
+    }
+  );
 };
 
 exports.brand_update_get = (req, res) => {

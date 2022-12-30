@@ -184,12 +184,63 @@ exports.car_create_post = [
   },
 ];
 
-exports.car_delete_get = (req, res) => {
-  res.send("Not implemented Car Delete GET");
+exports.car_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      car(callback) {
+        Car.findById(req.params.id).exec(callback);
+      },
+      car_instance(callback) {
+        CarInstance.find({ car: req.params.id }).exec(callback);
+      },
+    },
+
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car == null) {
+        res.redirect("/catalog/cars");
+      }
+      res.render("car_delete", {
+        title: "Delete Car",
+        car: results.car,
+        carinstance: results.car_instance,
+      });
+    }
+  );
 };
 
-exports.car_delete_post = (req, res) => {
-  res.send("Not implemented Car Delete POST");
+exports.car_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      car(callback) {
+        Car.findById(req.params.id).exec(callback);
+      },
+      car_instance(callback) {
+        CarInstance.find({ car: req.params.id }).populate("car").exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car_instance.length > 0) {
+        res.render("car_delete", {
+          title: "Delete Car",
+          car: results.car,
+          carinstance: results.car_instance,
+        });
+        return;
+      }
+      Car.findByIdAndRemove(req.body.carid, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/catalog/cars");
+      });
+    }
+  );
 };
 
 exports.car_update_get = (req, res) => {

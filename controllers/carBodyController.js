@@ -70,9 +70,7 @@ exports.carbody_create_post = [
   },
 ];
 
-exports.carbody_delete_get = (req, res) => {
-  res.send("Not implemented CarBody delete GET");
-};
+exports.carbody_delete_get = (req, res) => {};
 
 exports.carbody_delete_post = (req, res) => {
   res.send("Not implemented CarBody delete GET");

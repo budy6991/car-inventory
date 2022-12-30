@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  
+
+  h1 #{title}: #{car.name}
+
+  if carinstance.length 
+    p #[strong Delete the following car instances before attempting to delete this brand]
+
+      h4 #{car.fullModelName} Instances: 
+
+      hr
+
+      dl 
+      each instance  in carinstance
+        dt 
+          a(href=instance.url) #{instance.authorized_dealer}
+        
+  
+  else 
+
+    p Do you really want to delete this Car? 
+
+    form.form-control(method='POST' action='')
+      input(type='hidden', name='carid', required='true', value=car._id)
+      button(type='submit') Delete 
+
+  
