@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  
+
+  h1 #{title}: #{manufacturer.name}
+
+  if car_list.length 
+    p #[strong Delete the following cars before attempting to delete this manufacturer]
+
+      h4 Cars: 
+
+      dl 
+      each car  in car_list
+        dt 
+          a(href=car.url) #{car.fullModelName}
+        dd #{car.description}
+  
+  else if brand_list.length 
+    p #[strong Delete the following brands before attempting to delete this manufacturer]
+
+      h4 Brands: 
+
+      dl 
+      each brand in brand_list 
+        dt
+          a(href=brand.url) #{brand.name}
+        dd #{brand.description}
+  
+  else 
+
+    p Do you really want to delete this Brand? 
+
+    form.form-control(method='POST' action='')
+      input(type='hidden', name='manufacturerid', required='true', value=manufacturer._id)
+      button(type='submit') Delete 

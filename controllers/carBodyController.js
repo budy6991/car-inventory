@@ -1,4 +1,6 @@
 const CarBody = require("../models/carBody");
+const Car = require("../models/car");
+const async = require("async");
 const { body, validationResult } = require("express-validator");
 
 exports.carbody_list = (req, res, next) => {
@@ -70,10 +72,62 @@ exports.carbody_create_post = [
   },
 ];
 
-exports.carbody_delete_get = (req, res) => {};
+exports.carbody_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      car(callback) {
+        Car.find({ car_body: req.params.id }).exec(callback);
+      },
+      car_body(callback) {
+        CarBody.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car == null) {
+        res.render("/catalog/carbodies");
+      }
+      res.render("carbody_delete", {
+        title: "Delete Car Body Type",
+        car: results.car,
+        carbody: results.car_body,
+      });
+    }
+  );
+};
 
-exports.carbody_delete_post = (req, res) => {
-  res.send("Not implemented CarBody delete GET");
+exports.carbody_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      car(callback) {
+        Car.find({ car_body: req.params.id }).exec(callback);
+      },
+      car_body(callback) {
+        CarBody.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car.length > 0) {
+        res.render("carbody_delete", {
+          title: "Delete Car Body Type",
+          car: results.car,
+          carbody: results.car_body,
+        });
+        return;
+      }
+      CarBody.findByIdAndRemove(req.body.carbodyid, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/catalog/carbodies");
+      });
+    }
+  );
 };
 
 exports.carbody_update_get = (req, res) => {

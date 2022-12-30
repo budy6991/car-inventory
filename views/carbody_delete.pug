@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  
+
+  h1 #{title}: #{carbody.name}
+
+  if car.length 
+    p  #[strong #{carbody.name} body type is listed in between the next cars, please delete those before continuing to delete the car body type]
+
+      h4 Cars: 
+
+      dl 
+      each car_unit  in car
+        dt 
+          a(href=car_unit.url) #{car_unit.fullModelName}
+        dd #{car_unit.description}
+  
+  else 
+
+    p Do you really want to delete this Car Body Type ? 
+
+    form.form-control(method='POST' action='')
+      input(type='hidden', name='carbodyid', required='true', value=carbody._id)
+      button(type='submit') Delete 

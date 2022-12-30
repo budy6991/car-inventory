@@ -106,12 +106,80 @@ exports.manufacturer_create_post = [
   },
 ];
 
-exports.manufacturer_delete_get = (req, res) => {
-  res.send("Not implemented: Manufacturer Delete Get");
+exports.manufacturer_delete_get = (req, res, next) => {
+  async.parallel(
+    {
+      list_car(callback) {
+        Car.find({ manufacturer: req.params.id }).exec(callback);
+      },
+      list_brand(callback) {
+        Brand.find({ manufacturer: req.params.id }).exec(callback);
+      },
+      manufacturer(callback) {
+        Manufacturer.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.list_car == null) {
+        res.redirect("/catalog/manufacturers");
+      }
+      if (results.list_brand == null) {
+        res.redirect("/catalog/manufacturers");
+      }
+      res.render("manufacturer_delete", {
+        title: "Delete Manufacturer",
+        car_list: results.list_car,
+        brand_list: results.list_brand,
+        manufacturer: results.manufacturer,
+      });
+    }
+  );
 };
 
-exports.manufacturer_delete_post = (req, res) => {
-  res.send("Not implemented: Manufacturer Delete POST");
+exports.manufacturer_delete_post = (req, res, next) => {
+  async.parallel(
+    {
+      list_car(callback) {
+        Car.findById({ manufacturer: req.params.id }).exec(callback);
+      },
+      list_brand(callback) {
+        Brand.findById({ manufacturer: req.params.id }).exec(callback);
+      },
+      manufacturer(callback) {
+        Manufacturer.findById(req.params.id).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.list_car == null) {
+        res.render("manufacturer_delete", {
+          title: "Delete Manufacturer",
+          car_list: results.list_car,
+          brand_list: results.list_brand,
+          manufacturer: results.manufacturer,
+        });
+      }
+      if (results.list_brand == null) {
+        res.render("manufacturer_delete", {
+          title: "Delete Manufacturer",
+          car_list: results.list_car,
+          brand_list: results.list_brand,
+          manufacturer: results.manufacturer,
+        });
+      }
+      Manufacturer.findByIdAndRemove(req.body.manufacturerid, (err) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect("/catalog/manufacturers");
+      });
+    }
+  );
 };
 
 exports.manufacturer_update_get = (req, res) => {
