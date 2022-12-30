@@ -22,3 +22,7 @@ block content
         else 
           span.text-sold #{status}
     p #[strong Available on: ] #{car_instance.available}
+  
+  hr
+  p 
+    a(href=car_instance.url+'/delete') Delete Car Instance

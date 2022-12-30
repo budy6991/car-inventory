@@ -87,12 +87,30 @@ exports.carinstance_create_post = [
   },
 ];
 
-exports.carinstance_delete_get = (req, res) => {
-  res.send("Not implemented CarInstance delete GET");
+exports.carinstance_delete_get = (req, res, next) => {
+  CarInstance.findById(req.params.id)
+    .populate("car")
+    .exec(function (err, car_instance) {
+      if (err) {
+        return next(err);
+      }
+      if (car_instance == null) {
+        res.redirect("/catalog/carinstances");
+      }
+      res.render("carinstance_delete", {
+        title: "Delete Car Instance",
+        carinstance: car_instance,
+      });
+    });
 };
 
-exports.carinstance_delete_post = (req, res) => {
-  res.send("Not implemented CarInstance delete POST");
+exports.carinstance_delete_post = (req, res, next) => {
+  CarInstance.findByIdAndRemove(req.body.carinstanceid, (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/catalog/carinstances");
+  });
 };
 
 exports.carinstance_update_get = (req, res) => {

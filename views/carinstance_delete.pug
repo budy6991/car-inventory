@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  
+
+  h1 #{title}: #{carinstance.car.fullModelName} | #{carinstance.authorized_dealer}
+
+  p Do you really want to delete this car instance? 
+
+  form.form-control(method='POST' action='')
+    input(type='hidden', name='carinstanceid', required='true', value=carinstance._id)
+    button(type='submit') Delete 
+
+  
