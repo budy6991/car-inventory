@@ -243,8 +243,45 @@ exports.car_delete_post = (req, res, next) => {
   );
 };
 
-exports.car_update_get = (req, res) => {
-  res.send("Not implemented Car Update GET");
+exports.car_update_get = (req, res, next) => {
+  async.parallel(
+    {
+      car(callback) {
+        Car.findById(req.params.id)
+          .populate("brand")
+          .populate("manufacturer")
+          .populate("car_body")
+          .exec(callback);
+      },
+
+      list_manufacturer(callback) {
+        Manufacturer.find().sort({ name: 1 }).exec(callback);
+      },
+      list_car_body(callback) {
+        CarBody.find().sort({ name: 1 }).exec(callback);
+      },
+      list_brand(callback) {
+        Brand.find().sort({ name: 1 }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.car == null) {
+        const err = new Error("Car not found");
+        err.status = 404;
+        return next(err);
+      }
+      res.render("car_form", {
+        title: "Update Car",
+        car: results.car,
+        manufacturer_list: results.list_manufacturer,
+        car_body_list: results.list_car_body,
+        brand_list: results.list_brand,
+      });
+    }
+  );
 };
 
 exports.car_update_post = (req, res) => {
