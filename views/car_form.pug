@@ -11,21 +11,21 @@ block content
     label(for="year") Year: 
     input(type="number" name='year' placeholder='i.e 2018' required='true' value=(undefined===car? '': car.year))
     label(for="description") Description: 
-    textarea(type='textarea' name='description' placeholder='Introduce a brief description of te model' required='true' value=(undefined===car? '': car.description))  
+    textarea(type='textarea', name='description', placeholder='Introduce a brief description of te model', required='true' ) #{undefined===car? '' : car.description}  
     label(for="price") Price: 
     input(type="number" name='price' placeholder='Car price' required='true' value=(undefined===car? '': car.price))
     label(for="manufacturer") Manufacturer :
     select(type='select' name='manufacturer' placeholder='Choose a manufacturer' required='true' value=(undefined===car? '': car.manufacturer.name))
       each manufacturer in manufacturer_list 
-        option(value=manufacturer._id) #{manufacturer.name}
+        option(value=manufacturer._id selected=(manufacturer._id.toString()===car.manufacturer._id.toString()? 'selected' : false)) #{manufacturer.name}
     label(for="brand") Brand: 
     select(type='select' name='brand' placeholder='Choose a car brand' required='true' value=(undefined===car? '': car.brand.name))
       each brand in brand_list 
-        option(value=brand._id) #{brand.name}
+        option(value=brand._id selected=(brand._id.toString()===car.brand._id.toString()? 'selected' : false)) #{brand.name}
     label(for="car_body") Car body type:  
     select(type='select' name='car_body' placeholder='Choose a car body' required='true' value=(undefined===car? '': car.car_body.name))
       each carbody in car_body_list 
-        option(value=carbody._id) #{carbody.name}
+        option(value=carbody._id selected=(carbody._id.toString()===car.car_body._id.toString()? 'selected' : false)) #{carbody.name}
     button(type='submit') Submit
 
   if errors 

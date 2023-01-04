@@ -284,6 +284,69 @@ exports.car_update_get = (req, res, next) => {
   );
 };
 
-exports.car_update_post = (req, res) => {
-  res.send("Not implemented Car Update POST");
-};
+exports.car_update_post = [
+  body("name", "Car name required").trim().isLength({ min: 1 }).escape(),
+  body("model", "Car Model required").trim().isLength({ min: 1 }).escape(),
+  body("year", "Year is required").trim().isLength({ min: 1 }).escape(),
+  body("description", "A description is required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("price", "Car price is required").trim().isLength({ min: 1 }).escape(),
+  body("manufacturer").escape(),
+  body("brand").escape(),
+  body("car_body").escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const car = new Car({
+      name: req.body.name,
+      model: req.body.model,
+      year: req.body.year,
+      description: req.body.description,
+      price: req.body.price,
+      manufacturer: req.body.manufacturer,
+      brand: req.body.brand,
+      car_body: req.body.car_body,
+      // Important! Old ID
+      _id: req.params.id,
+    });
+
+    if (!errors.isEmpty()) {
+      async.parallel(
+        {
+          manufacturers(callback) {
+            Manufacturer.find().sort({ name: 1 }).exec(callback);
+          },
+          brands(callback) {
+            Brand.find().sort({ name: 1 }).exec(callback);
+          },
+          car_bodies(callback) {
+            CarBody.find().sort({ name: 1 }).exec(callback);
+          },
+        },
+
+        (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          res.render("car_form", {
+            title: "Update Car",
+            manufacturer_list: results.manufacturers,
+            brand_list: results.brands,
+            car_body_list: results.car_bodies,
+            car,
+            errors: errors.array(),
+          });
+        }
+      );
+      return;
+    }
+
+    Car.findByIdAndUpdate(req.params.id, car, {}, (err, thecar) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(thecar.url);
+    });
+  },
+];
