@@ -7,9 +7,9 @@ block content
 
   form.form-control(method='POST' action='')
     label(for='name') Car Body Type: 
-    input(type='text', placeholder='Sedan, Convertible, Supercar, etc.' name='name' value=(undefined===carbody? '': carbody.name))
+    input(type='text', placeholder='Sedan, Convertible, Supercar, etc.' name='name' value=(undefined===carbody? '': carbody.name) required=true)
     label(for='description') Description: 
-    textarea(type='textarea', placeholder='Descript the car body type' name='description' value=(undefined===carbody? '' : carbody.description))
+    textarea(type='textarea', placeholder='Descript the car body type' name='description' required=true) #{undefined===carbody? '': carbody.description}
     button(type='submit') Submit
   
   if errors 

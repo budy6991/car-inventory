@@ -130,8 +130,16 @@ exports.carbody_delete_post = (req, res, next) => {
   );
 };
 
-exports.carbody_update_get = (req, res) => {
-  res.send("Not implemented CarBody update GET");
+exports.carbody_update_get = (req, res, next) => {
+  CarBody.findById(req.params.id).exec((err, car_body) => {
+    if (err) {
+      return next(err);
+    }
+    res.render("carbody_form", {
+      title: "Update Car Body Type",
+      carbody: car_body,
+    });
+  });
 };
 
 exports.carbody_update_post = (req, res) => {
