@@ -135,6 +135,11 @@ exports.carbody_update_get = (req, res, next) => {
     if (err) {
       return next(err);
     }
+    if ((car_body = null)) {
+      const err = new Error("Car body not found");
+      err.status = 404;
+      return next(err);
+    }
     res.render("carbody_form", {
       title: "Update Car Body Type",
       carbody: car_body,
@@ -142,6 +147,33 @@ exports.carbody_update_get = (req, res, next) => {
   });
 };
 
-exports.carbody_update_post = (req, res) => {
-  res.send("Not implemented CarBody update POST");
-};
+exports.carbody_update_post = [
+  body("name", "Car body name required").trim().isLength({ min: 1 }).escape(),
+  body("description", "Description required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const carbody = new CarBody({
+      name: req.body.name,
+      description: req.body.description,
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      res.render("carbody_form", {
+        title: "Update Car Body Type",
+        carbody,
+        errors: errors.array(),
+      });
+      return;
+    }
+
+    CarBody.findByIdAndUpdate(req.params.id, carbody, {}, (err, theCarBody) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(theCarBody.url);
+    });
+  },
+];
