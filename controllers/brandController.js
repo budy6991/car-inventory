@@ -153,10 +153,71 @@ exports.brand_delete_post = (req, res, next) => {
   );
 };
 
-exports.brand_update_get = (req, res) => {
-  res.send("Not implemented Brand Update GET");
+exports.brand_update_get = (req, res, next) => {
+  async.parallel(
+    {
+      brand(callback) {
+        Brand.findById(req.params.id).exec(callback);
+      },
+      manufacturers(callback) {
+        Manufacturer.find().sort({ name: 1 }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.brand == null) {
+        const err = new Error("Brand not found");
+        err.status = 404;
+        return next(err);
+      }
+      res.render("brand_form", {
+        title: "Update Brand",
+        brand: results.brand,
+        manufacturer_list: results.manufacturers,
+      });
+    }
+  );
 };
 
-exports.brand_update_post = (req, res) => {
-  res.send("Not implemented Brand Update POST");
-};
+exports.brand_update_post = [
+  body("name", "Brand name is required").trim().isLength({ min: 1 }).escape(),
+  body("description", "Brand description required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("manufacturer").escape(),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const brand = new Brand({
+      name: req.body.name,
+      description: req.body.description,
+      manufacturer: req.body.manufacturer,
+      // Old ID
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      Manufacturer.find()
+        .sort({ name: 1 })
+        .exec((err, list_manufacturer) => {
+          if (err) {
+            return next(err);
+          }
+          res.render("brand_form", {
+            title: "Update Brand",
+            brand,
+            manufacturer_list: list_manufacturer,
+            errors: errors.array(),
+          });
+        });
+      return;
+    }
+    Brand.findByIdAndUpdate(req.params.id, brand, {}, (err, thebrand) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(thebrand.url);
+    });
+  },
+];

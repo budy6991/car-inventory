@@ -15,21 +15,21 @@ block content
     label(for="price") Price: 
     input(type="number" name='price' placeholder='Car price' required='true' value=(undefined===car? '': car.price))
     label(for="manufacturer") Manufacturer :
-    select(type='select' name='manufacturer' placeholder='Choose a manufacturer' required='true' value=(undefined===car? '': car.manufacturer.name))
+    select(type='select' name='manufacturer' placeholder='Choose a manufacturer' required='true' )
       each manufacturer in manufacturer_list 
         if car 
           option(value=manufacturer._id selected=(manufacturer._id.toString()===car.manufacturer._id.toString()? 'selected' : false)) #{manufacturer.name}
         else 
           option(value=manufacturer._id) #{manufacturer.name}
     label(for="brand") Brand: 
-    select(type='select' name='brand' placeholder='Choose a car brand' required='true' value=(undefined===car? '': car.brand.name))
+    select(type='select' name='brand' placeholder='Choose a car brand' required='true' )
       each brand in brand_list 
         if car 
           option(value=brand._id selected=(brand._id.toString()===car.brand._id.toString()? 'selected' : false)) #{brand.name}
         else 
           option(value=brand._id) #{brand.name}
     label(for="car_body") Car body type:  
-    select(type='select' name='car_body' placeholder='Choose a car body' required='true' value=(undefined===car? '': car.car_body.name))
+    select(type='select' name='car_body' placeholder='Choose a car body' required='true' )
       each carbody in car_body_list 
         if car
           option(value=carbody._id selected=(carbody._id.toString()===car.car_body._id.toString()? 'selected' : false)) #{carbody.name}
