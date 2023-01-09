@@ -182,10 +182,63 @@ exports.manufacturer_delete_post = (req, res, next) => {
   );
 };
 
-exports.manufacturer_update_get = (req, res) => {
-  res.send("Not implemented: Manufacturer Update GET");
+exports.manufacturer_update_get = (req, res, next) => {
+  Manufacturer.findById(req.params.id).exec((err, manufacturerResult) => {
+    if (err) {
+      return next(err);
+    }
+    if (manufacturerResult == null) {
+      const err = new Error("Manufacturer not found");
+      err.status = 404;
+      return next(err);
+    }
+    res.render("manufacturer_form", {
+      title: "Update Manufacturer",
+      manufacturer: manufacturerResult,
+    });
+  });
 };
 
-exports.manufacturer_update_post = (req, res) => {
-  res.send("Not implemented: Manufacturer Update POST");
-};
+exports.manufacturer_update_post = [
+  body("name", "Please provide a name for the manufacturer")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("description", "Please provide a description for the manufacturer")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("headquarters", "Please provide headquarters information")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+
+  (req, res, next) => {
+    console.log(req.body);
+    const errors = validationResult(req);
+    const manufacturer = new Manufacturer({
+      name: req.body.name,
+      description: req.body.description,
+      headquarters: req.body.headquarters,
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      res.render("manufacturer_form", {
+        title: "Update Manufacturer",
+        manufacturer,
+        errors: errors.array(),
+      });
+    }
+    Manufacturer.findByIdAndUpdate(
+      req.params.id,
+      manufacturer,
+      {},
+      (err, theManufacturer) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect(theManufacturer.url);
+      }
+    );
+  },
+];

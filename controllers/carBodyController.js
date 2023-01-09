@@ -135,11 +135,12 @@ exports.carbody_update_get = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    if ((car_body = null)) {
+    if (car_body == null) {
       const err = new Error("Car body not found");
       err.status = 404;
       return next(err);
     }
+    // console.log(car_body);
     res.render("carbody_form", {
       title: "Update Car Body Type",
       carbody: car_body,
