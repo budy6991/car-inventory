@@ -22,7 +22,7 @@ block content
       option(value='Reserved' selected=(undefined===carinstance || carinstance.status!= 'Reserved' ? false : 'selected')) Reserved
       option(value='Sold' selected=(undefined===carinstance || carinstance.status!= 'Sold' ? false : 'selected')) Sold
     label(for="available") Available on: 
-    input(type="date" required='true' name='available') 
+    input(type="date" required='true' name='available' value=(undefined===carinstance? '': carinstance.date_yyyy_mm_dd)) 
     button(type='submit') Submit
    
   if errors 
