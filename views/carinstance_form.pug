@@ -8,18 +8,21 @@ block content
     label(for="car") Car : 
     select(type='select' name='car' required='true')
       each car in car_list
-        option(value=car.id) #{car.fullModelName}
+        if carinstance 
+          option(value=car._id selected=(car._id.toString()===carinstance.car._id.toString() ? 'selected' : false)) #{car.fullModelName}
+        else
+          option(value=car._id) #{car.fullModelName}
     label(for="authorized_dealer") Authorized Dealer: 
-    input(type='text' name='authorized_dealer' placeholder='i.e New York Car Factory, NY' required='true') 
+    input(type='text' name='authorized_dealer' placeholder='i.e New York Car Factory, NY' required='true' value=(undefined===carinstance ? '': carinstance.authorized_dealer)) 
     label(for='status') Status: 
-    select(type='select' name='status' required='true')
+    select(type='select' name='status' required='true' selected=(carinstance._id.toString()))
       option(value='Available') Available
       option(value='On Repair') On Repair
       option(value='On Loan') On Loan
       option(value='Reserved') Reserved
       option(value='Sold') Sold
     label(for="available") Available on: 
-    input(type="date" required='true' name='available') 
+    input(type="date" required='true' name='available' value=(undefined===carinstance? '': carinstance.date)) 
     button(type='submit') Submit
   
   if errors 

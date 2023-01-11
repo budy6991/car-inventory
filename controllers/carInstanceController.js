@@ -1,5 +1,6 @@
 const CarInstance = require("../models/carInstance");
 const Car = require("../models/car");
+const async = require("async");
 const { body, validationResult } = require("express-validator");
 
 exports.carinstance_list = (req, res, next) => {
@@ -113,8 +114,33 @@ exports.carinstance_delete_post = (req, res, next) => {
   });
 };
 
-exports.carinstance_update_get = (req, res) => {
-  res.send("Not implemented CarInstance update GET");
+exports.carinstance_update_get = (req, res, next) => {
+  async.parallel(
+    {
+      carinstance(callback) {
+        CarInstance.findById(req.params.id).exec(callback);
+      },
+      list_car(callback) {
+        Car.find().sort({ fullModelName: 1 }).exec(callback);
+      },
+    },
+
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      if (results.carinstance == null) {
+        const err = new Error("Car Instance not found");
+        err.status = 404;
+        return next(err);
+      }
+      res.render("carinstance_form", {
+        title: "Update Car Instance",
+        carinstance: results.carinstance,
+        car_list: results.list_car,
+      });
+    }
+  );
 };
 
 exports.carinstance_update_post = (req, res) => {
