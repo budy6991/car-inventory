@@ -143,6 +143,50 @@ exports.carinstance_update_get = (req, res, next) => {
   );
 };
 
-exports.carinstance_update_post = (req, res) => {
-  res.send("Not implemented CarInstance update POST");
-};
+exports.carinstance_update_post = [
+  body("car").escape(),
+  body("authorized_dealer", "Authorized Dealer is required")
+    .trim()
+    .isLength({ min: 1 })
+    .escape(),
+  body("status").escape(),
+  body("available").escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const carinstance = new CarInstance({
+      car: req.body.car,
+      authorized_dealer: req.body.authorized_dealer,
+      status: req.body.status,
+      available: req.body.available,
+      _id: req.params.id,
+    });
+    if (!errors.isEmpty()) {
+      Car.find()
+        .sort({ fullModelName: 1 })
+        .exec(function (err, list_car) {
+          if (err) {
+            return next(err);
+          }
+          res.render("carinstance_form", {
+            title: "Create Car Instance",
+            car_list: list_car,
+            errors: errors.array(),
+            carinstance,
+          });
+        });
+      return;
+    }
+    CarInstance.findByIdAndUpdate(
+      req.params.id,
+      carinstance,
+      {},
+      (err, thecarinstance) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect(thecarinstance.url);
+      }
+    );
+  },
+];
