@@ -15,7 +15,7 @@ block content
     label(for="authorized_dealer") Authorized Dealer: 
     input(type='text' name='authorized_dealer' placeholder='i.e New York Car Factory, NY' required='true' value=(undefined===carinstance ? '': carinstance.authorized_dealer)) 
     label(for='status') Status: 
-    select(type='select' name='status' required='true' selected=(carinstance._id.toString()))
+    select(type='select' name='status' required='true' )
       option(value='Available' selected=(undefined===carinstance || carinstance.status!= 'Available' ? false : 'selected')) Available
       option(value='On Repair' selected=(undefined===carinstance || carinstance.status!= 'On Repair' ? false : 'selected')) On Repair
       option(value='On Loan' selected=(undefined===carinstance || carinstance.status!= 'On Loan' ? false : 'selected')) On Loan
