@@ -62,10 +62,28 @@ hr {
   text-decoration: none;
 }
 
+.container-content {
+  display: flex;
+  flex-direction: column;
+}
+.container-content .form-control {
+  justify-self: center;
+  align-self: center;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  width: 50%;
   gap: 20px;
+}
+.form-control button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  justify-self: center;
 }
 
 .text-success {

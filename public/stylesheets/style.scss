@@ -68,10 +68,27 @@ hr {
   }
 }
 
+.container-content {
+  display: flex;
+  flex-direction: column;
+
+  .form-control {
+    justify-self: center;
+    align-self: center;
+  }
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  width: 50%;
   gap: 20px;
+  button {
+    width: fit-content;
+    justify-self: center;
+  }
 }
 
 .text-success {

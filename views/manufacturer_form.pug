@@ -6,15 +6,12 @@ block content
 
 
   form.form-control(method='POST' action='')
-    div.form-group
-      label(for='name') Name: 
-      input(type='text' name='name' placeholder='Hyundai Motor Group, General Motors, etc' required="true" value=(undefined===manufacturer? '': manufacturer.name))
-    div.form-group
-      label(for='description') Description: 
-      textarea(type='textarea' name='description' placeholder='Give a brief explanation of the manufacturer' required="true") #{undefined===manufacturer ? '' : manufacturer.description}
-    div.form-group
-      label(for='headquarters') Headquaters: 
-      input(type='text' name='headquarters' placeholder='i.e Brooklyn, NY' required="true" value=(undefined===manufacturer? '': manufacturer.headquarters))
+    label(for='name') Name: 
+    input(type='text' name='name' placeholder='Hyundai Motor Group, General Motors, etc' required="true" value=(undefined===manufacturer? '': manufacturer.name))
+    label(for='description') Description: 
+    textarea(type='textarea' name='description' placeholder='Give a brief explanation of the manufacturer' required="true") #{undefined===manufacturer ? '' : manufacturer.description}
+    label(for='headquarters') Headquaters: 
+    input(type='text' name='headquarters' placeholder='i.e Brooklyn, NY' required="true" value=(undefined===manufacturer? '': manufacturer.headquarters))
     
     button(type='submit') Submit 
   
