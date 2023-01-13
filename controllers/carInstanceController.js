@@ -11,6 +11,7 @@ exports.carinstance_list = (req, res, next) => {
       if (err) {
         return next(err);
       }
+      console.log(list_carinstance[0]);
       res.render("carinstance_list", {
         title: "Availability",
         carinstance_list: list_carinstance,

@@ -6,7 +6,7 @@ block content
   ul 
     each val in carinstance_list 
       li
-        a(href=val.url)  #{val.car.fullModelName} : #{val.authorized_dealer} - 
+        a(href=val.url) #{val.car.fullModelName} : #{val.authorized_dealer} - 
         if val.status=='Available'
           span.text-success #{val.status}
         else if val.status=='On Repair'
