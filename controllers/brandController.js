@@ -169,6 +169,7 @@ exports.brand_update_get = (req, res, next) => {
       },
     },
     (err, results) => {
+      console.log(results.manufacturers);
       if (err) {
         return next(err);
       }
