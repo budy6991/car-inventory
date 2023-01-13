@@ -2,13 +2,16 @@ $main-color: rgb(255, 123, 0);
 $secondary-color: blue;
 
 body {
-  padding: 30px;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: rgb(255, 250, 250);
 }
 
 a {
-  color: $main-color;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
 }
 
 hr {
@@ -23,14 +26,39 @@ hr {
 
 .sidenav-fixed {
   background-color: rgb(255, 255, 255);
-  margin-right: 30px;
+  background-color: slategray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  font-size: medium;
+
+  ul {
+    padding: 0;
+    margin: 30px;
+  }
+
   li {
     margin-top: 20px;
     list-style: none;
+
+    a:hover {
+      color: slategray;
+      background-color: white;
+    }
+  }
+  a {
+    padding: 10px;
   }
 }
 
 .container-content {
+  padding: 30px;
+  overflow: scroll;
+  width: 100%;
+  h1 {
+    color: slategray;
+  }
   li {
     margin-top: 25px;
   }

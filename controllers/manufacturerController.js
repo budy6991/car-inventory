@@ -86,16 +86,11 @@ exports.manufacturer_create_post = [
       headquarters: req.body.headquarters,
     });
     if (!errors.isEmpty()) {
-      Brand.find({}, "name").exec(function (err, brands) {
-        if (err) {
-          return next(err);
-        }
-        res.render("manufacturer_form", {
-          title: "Create Manufacturer",
-          selected_brand: manufacturer.brands._id,
-          errors: errors.array(),
-          manufacturer,
-        });
+      res.render("manufacturer_form", {
+        title: "Create Manufacturer",
+
+        errors: errors.array(),
+        manufacturer,
       });
     }
     // If data from form is valid:
