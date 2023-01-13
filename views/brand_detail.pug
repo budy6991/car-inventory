@@ -23,9 +23,9 @@ block content
         p The current brand has no cars in our records. 
 
   hr
-    
-  if brand.manufacturer
-    p #[strong Manufacturer: ] #{brand.manufacturer.name}
+
+  if manufacturer
+    p #[strong Manufacturer: ] #{manufacturer.name} 
 
   else 
     h4 There is no manufacturer registered for this brand.

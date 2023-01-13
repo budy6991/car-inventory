@@ -138,10 +138,10 @@ exports.manufacturer_delete_post = (req, res, next) => {
   async.parallel(
     {
       list_car(callback) {
-        Car.findById({ manufacturer: req.params.id }).exec(callback);
+        Car.find({ manufacturer: req.params.id }).exec(callback);
       },
       list_brand(callback) {
-        Brand.findById({ manufacturer: req.params.id }).exec(callback);
+        Brand.find({ manufacturer: req.params.id }).exec(callback);
       },
       manufacturer(callback) {
         Manufacturer.findById(req.params.id).exec(callback);

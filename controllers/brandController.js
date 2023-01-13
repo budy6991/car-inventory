@@ -22,13 +22,17 @@ exports.brand_detail = (req, res, next) => {
   async.parallel(
     {
       brand(callback) {
-        Brand.findById(req.params.id).populate("manufacturer").exec(callback);
+        Brand.findById(req.params.id).exec(callback);
+      },
+      manufacturer_brand(callback) {
+        Brand.find({ manufacturer: req.params.id }).exec(callback);
       },
       brand_cars(callback) {
         Car.find({ brand: req.params.id }).exec(callback);
       },
     },
     (err, results) => {
+      console.log(results.manufacturer);
       if (err) {
         return next(err);
       }
@@ -41,6 +45,7 @@ exports.brand_detail = (req, res, next) => {
         title: "Brand Detail",
         brand: results.brand,
         brand_cars: results.brand_cars,
+        manufacturer: results.manufacturer_brand,
       });
     }
   );
