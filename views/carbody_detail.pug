@@ -9,9 +9,11 @@ block content
     hr
 
     if carbody_list.length
-      h3 #{carbody.name} cars: 
-      each val in carbody_list 
-        a(href=val.url) #{val.fullModelName}
+      div(style='margin-left:20px;margin-top:20px')
+        h3 #{carbody.name} cars: 
+        each val in carbody_list 
+          p
+            a(href=val.url) #{val.fullModelName}
     else 
       h5.text-reserved There are no #{carbody.name} cars in our records. 
     

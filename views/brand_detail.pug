@@ -24,14 +24,13 @@ block content
 
   hr
 
-  if manufacturer
-    p #[strong Manufacturer: ] #{manufacturer.name} 
-
-  else 
-    h4 There is no manufacturer registered for this brand.
+  h3 Manufacturer: 
+  div(style='margin-left:20px')
+    a(href=brand.manufacturer.url) #{brand.manufacturer.name}
 
   hr
-  p 
-    a(href=brand.url+'/delete') Delete Brand
-  p 
-    a(href=brand.url+'/update') Update Brand
+  div.buttons-container
+    p 
+      a(href=brand.url+'/delete') Delete Brand
+    p 
+      a(href=brand.url+'/update') Update Brand

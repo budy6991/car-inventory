@@ -61,11 +61,26 @@ textarea {
   padding: 30px;
   overflow: scroll;
   width: 100%;
+
   h1 {
     color: slategray;
   }
   li {
+    padding: 10px;
     margin-top: 25px;
+    list-style: none;
+    width: fit-content;
+    border-radius: 15px;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 3px 3px 8px;
+  }
+  li:hover {
+    background-color: rgb(66, 125, 143);
+    transform: scale(1.1);
+    color: white;
+    a {
+      color: white;
+    }
   }
   a {
     color: blue;

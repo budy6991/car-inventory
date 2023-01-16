@@ -24,7 +24,8 @@ block content
     p #[strong Available on: ] #{car_instance.date_yyyy_mm_dd}
   
   hr
-  p 
-    a(href=car_instance.url+'/delete') Delete Car Instance
-  p 
-    a(href=car_instance.url+'/update') Update Car Instance
+  div.buttons-container
+    p 
+      a(href=car_instance.url+'/delete') Delete Car Instance
+    p 
+      a(href=car_instance.url+'/update') Update Car Instance
