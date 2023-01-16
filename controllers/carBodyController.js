@@ -18,15 +18,26 @@ exports.carbody_list = (req, res, next) => {
 };
 
 exports.carbody_detail = (req, res, next) => {
-  CarBody.findById(req.params.id).exec(function (err, carbody_detail) {
-    if (err) {
-      return next(err);
+  async.parallel(
+    {
+      carbody(callback) {
+        CarBody.findById(req.params.id).exec(callback);
+      },
+      carbodylist(callback) {
+        Car.find({ car_body: req.params.id }).exec(callback);
+      },
+    },
+    (err, results) => {
+      if (err) {
+        return next(err);
+      }
+      res.render("carbody_detail", {
+        title: "Car Body Type detail",
+        carbody: results.carbody,
+        carbody_list: results.carbodylist,
+      });
     }
-    res.render("carbody_detail", {
-      title: "Car Body Type detail",
-      carbody: carbody_detail,
-    });
-  });
+  );
 };
 
 exports.carbody_create_get = (req, res, next) => {

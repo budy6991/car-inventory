@@ -7,7 +7,16 @@ block content
     p #{carbody.description}
 
     hr
-    p 
-      a(href=carbody.url+'/delete') Delete Car Body
-    p 
-      a(href=carbody.url+'/update') Update Car Body
+
+    if carbody_list.length
+      h3 #{carbody.name} cars: 
+      each val in carbody_list 
+        a(href=val.url) #{val.fullModelName}
+    else 
+      h5.text-reserved There are no #{carbody.name} cars in our records. 
+    
+    div.buttons-container
+      p 
+        a(href=carbody.url+'/delete') Delete Car Body
+      p 
+        a(href=carbody.url+'/update') Update Car Body
