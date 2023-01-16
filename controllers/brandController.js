@@ -32,7 +32,6 @@ exports.brand_detail = (req, res, next) => {
       },
     },
     (err, results) => {
-      console.log(results.manufacturer);
       if (err) {
         return next(err);
       }
@@ -164,12 +163,11 @@ exports.brand_update_get = (req, res, next) => {
       brand(callback) {
         Brand.findById(req.params.id).exec(callback);
       },
-      manufacturers(callback) {
+      list_manufacturers(callback) {
         Manufacturer.find().sort({ name: 1 }).exec(callback);
       },
     },
     (err, results) => {
-      console.log(results.manufacturers);
       if (err) {
         return next(err);
       }
@@ -178,10 +176,11 @@ exports.brand_update_get = (req, res, next) => {
         err.status = 404;
         return next(err);
       }
+
       res.render("brand_form", {
         title: "Update Brand",
         brand: results.brand,
-        manufacturer_list: results.manufacturers,
+        manufacturer_list: results.list_manufacturers,
       });
     }
   );

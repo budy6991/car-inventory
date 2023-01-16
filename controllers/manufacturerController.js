@@ -60,13 +60,7 @@ exports.manufacturer_create_get = (req, res, next) => {
 };
 
 exports.manufacturer_create_post = [
-  body("name")
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage("Name must be specified")
-    .isAlphanumeric()
-    .withMessage("Name has non-alphanumeric characters"),
+  body("name").trim().isLength({ min: 1 }).escape(),
   body("description")
     .trim()
     .isLength({ min: 1 })

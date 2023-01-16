@@ -12,11 +12,11 @@ block content
     label(for='manufacturer') Manufacturer:
     select(type='select' name='manufacturer' placeholder='Select manufacturer' required='true')
       each manufacturer in manufacturer_list 
-        if brand 
-          option(value=manufacturer._id selected=(manufacturer._id.toString()===brand.manufacturer._id.toString()? 'selected': false)) #{manufacturer.name}
+        if brand.manufacturer
+          option(value=manufacturer._id selected=(manufacturer._id.toString()==brand.manufacturer._id.toString()? 'selected' : false)) #{manufacturer.name}
         else 
           option(value=manufacturer._id) #{manufacturer.name}
-    button(type='Submit') Submit 
+    button(type='submit') Submit 
 
 
-  
+
