@@ -57,7 +57,7 @@ textarea {
   width: 100%;
 }
 .container-content h1 {
-  color: slategray;
+  color: rgb(66, 125, 143);
 }
 .container-content li {
   padding: 10px;
@@ -109,6 +109,25 @@ textarea {
   width: -moz-fit-content;
   width: fit-content;
   justify-self: center;
+}
+
+.buttons-container {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: larger;
+}
+.buttons-container p {
+  background: rgb(66, 125, 143);
+  padding: 10px;
+  border-radius: 15px;
+  transition: all 0.2s ease-in-out;
+}
+.buttons-container p a {
+  color: white;
+}
+.buttons-container p:hover {
+  transform: scale(1.1);
 }
 
 .text-success {

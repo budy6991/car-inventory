@@ -63,7 +63,7 @@ textarea {
   width: 100%;
 
   h1 {
-    color: slategray;
+    color: rgb(66, 125, 143);
   }
   li {
     padding: 10px;
@@ -113,6 +113,25 @@ textarea {
   padding: 10px;
   border-radius: 15px;
   box-shadow: 2px 2px 4px 1px gray;
+}
+
+.buttons-container {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  font-size: larger;
+  p {
+    background: rgb(66, 125, 143);
+    padding: 10px;
+    border-radius: 15px;
+    transition: all 0.2s ease-in-out;
+    a {
+      color: white;
+    }
+  }
+  p:hover {
+    transform: scale(1.1);
+  }
 }
 
 .text-success {
