@@ -151,7 +151,6 @@ exports.carbody_update_get = (req, res, next) => {
       err.status = 404;
       return next(err);
     }
-    // console.log(car_body);
     res.render("carbody_form", {
       title: "Update Car Body Type",
       carbody: car_body,

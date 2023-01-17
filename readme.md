@@ -1,6 +1,8 @@
-### Car Inventory
+# Car Inventory
 
 Car inventory made with MongoDB, Express, Node & Pug stack following the MVC (Model View Controller) pattern.
+
+## Have a look in <a href=''>here!</a>
 
 <img src='./assets/inventory-screenshot-1.jpg'>
 
@@ -14,4 +16,16 @@ The database then updates all the information and is displayed to the rest of th
 
 <img src='./assets/inventory-screenshot-2.jpg'>
 
-The app implements
+The app implements the tools below:
+
+- NodeJs
+- Mongo DB
+- Mongoose
+- Date FNS
+- Dotenv
+- SASS
+- MVC
+- Helmet
+- Compression
+- Luxon
+- Pug

@@ -34,7 +34,6 @@ exports.manufacturer_detail = (req, res, next) => {
       },
     },
     (err, results) => {
-      console.log(results);
       if (err) {
         return next(err);
       }
@@ -72,7 +71,6 @@ exports.manufacturer_create_post = [
     .escape(),
 
   (req, res, next) => {
-    console.log(req.body);
     const errors = validationResult(req);
     const manufacturer = new Manufacturer({
       name: req.body.name,
@@ -203,7 +201,6 @@ exports.manufacturer_update_post = [
     .escape(),
 
   (req, res, next) => {
-    console.log(req.body);
     const errors = validationResult(req);
     const manufacturer = new Manufacturer({
       name: req.body.name,
