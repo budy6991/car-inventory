@@ -10,7 +10,7 @@ The correlation between the above elements is set up when the user creates the v
 
 <img src='./assets/inventory-screenshot-3.jpg'>
 
-The databse then updates all the information and is displayed to the rest of the website accordingly.
+The database then updates all the information and is displayed to the rest of the website accordingly.
 
 <img src='./assets/inventory-screenshot-2.jpg'>
 

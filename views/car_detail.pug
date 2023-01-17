@@ -34,7 +34,8 @@ block content
         p.text-reserved #{val.status}
       else 
         p.text-sold #{val.status}
-      p #[strong Authorized Dealer: ] #{val.authorized_dealer}
+      p #[strong Authorized Dealer: ] 
+        a(href=val.url) #{val.authorized_dealer}
       if val.status!='Available'
         p #[strong Available on: ] #{val.date_yyyy_mm_dd}
   else  
