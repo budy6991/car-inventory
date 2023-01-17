@@ -2,7 +2,7 @@
 
 Car inventory made with MongoDB, Express, Node & Pug stack following the MVC (Model View Controller) pattern.
 
-## Have a look in <a href=''>here!</a>
+## Have a look in <a href='https://car-inventory.fly.dev/catalog'>here!</a>
 
 <img src='./assets/inventory-screenshot-1.jpg'>
 
